@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package hmis.Hospital;
 
 
@@ -10,10 +7,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.sql.*;
 
-/**
- *
- * @author HP
- */
+
 public class ViewDoctor extends JFrame implements ActionListener  {
     
     String []x={"Name","Username","DOB","Address","Phone","Email","City","gender","Blood","Age",

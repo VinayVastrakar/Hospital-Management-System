@@ -1,29 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package hmis.Hospital;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-/**
- *
- * @author HP
- */
+
 public class PatientHomePage extends JFrame implements ActionListener {
     JLabel l1;
     Font f,f1,f2;
     private String patientId;
     int login_id;
+    String username;
     
-    PatientHomePage(String PatientName, String pat_id, int loginId){
+    PatientHomePage(String PatientName, String pat_id, int login_id,String username){
         super("Patient Home Page");
         setLocation(0,0);
         setSize(1500,720);
        
         patientId = pat_id;
-        login_id = loginId;
+        this.login_id = login_id;
+        this.username = username;
         
         ImageIcon img = new ImageIcon(ClassLoader.getSystemResource("hmis\\Hospital\\Images\\Home1.jpg"));
         Image i = img.getImage().getScaledInstance(1500, 720, Image.SCALE_SMOOTH);
@@ -146,7 +142,7 @@ public class PatientHomePage extends JFrame implements ActionListener {
              new ViewDoctor(login_id).setVisible(true);
          }
          else if(comnd.equals("View Patient")){
-             new ViewPatient().setVisible(true);
+             new ViewPatient(username,login_id).setVisible(true);
          }
          else if(comnd.equals("View Receptionist")){
              new View_Receptionist().setVisible(true);

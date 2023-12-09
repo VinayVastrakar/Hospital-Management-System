@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package hmis.Hospital;
 
 
@@ -10,10 +7,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.sql.*;
 
-/**
- *
- * @author HP
- */
+
 public class Login extends JFrame implements ActionListener {
     
     JFrame f;
@@ -22,10 +16,10 @@ public class Login extends JFrame implements ActionListener {
     JTextField tf;
     JPasswordField pf;
     JButton bt1, bt2;
-    int loginId;
+    int login_id;
     
     Login(int login_id) {
-        loginId = login_id;
+        this.login_id = login_id;
         f = new JFrame("Login Page");
         f.setBackground(Color.WHITE);
         f.setLayout(null);
@@ -95,16 +89,17 @@ public class Login extends JFrame implements ActionListener {
                 String name = tf.getText();
                 String pass = pf.getText();
                 ResultSet  rs;
-                if(loginId==1){
+                if(login_id==1){
                     String q = "Select * from doctor where username='"+name+"' and password='"+pass+"'";
                     rs = obj.stm.executeQuery(q);
                     
                     if(rs.next()){
                         String doctorName = rs.getString("name");
                         String doctor_id = rs.getString("doc_id");
+                        String doctor_username = rs.getString("username");
 
 //                        System.out.println("Doctor login");
-                        new DoctorHomePage(doctorName,doctor_id,loginId).setVisible(true);
+                        new DoctorHomePage(doctorName,doctor_id,login_id,doctor_username).setVisible(true);
                         f.setVisible(false);
                     }else{
                         JOptionPane.showMessageDialog(null, "You have entered wrong Username and Password");
@@ -112,15 +107,16 @@ public class Login extends JFrame implements ActionListener {
                         f.setVisible(true);
                     }
                 }
-                else if(loginId==2){
+                else if(login_id==2){
                     String q = "Select * from admin where username='"+name+"' and password='"+pass+"'";
                     rs = obj.stm.executeQuery(q);
                     
                     if(rs.next()){
                         String adminName = rs.getString("name");
                         String admin_id = rs.getString("admin_id");
+                        String admin_username = rs.getString("username");
 
-                        new AdminHomePage(adminName,admin_id,loginId).setVisible(true);
+                        new AdminHomePage(adminName,admin_id,login_id,admin_username).setVisible(true);
                         f.setVisible(false);
                     }else{
                         JOptionPane.showMessageDialog(null, "You have entered wrong Username and Password");
@@ -128,15 +124,16 @@ public class Login extends JFrame implements ActionListener {
                         f.setVisible(true);
                     }
                 }
-                else if(loginId==3){
+                else if(login_id==3){
                     String q = "Select * from patient where username='"+name+"' and password='"+pass+"'";
                     rs = obj.stm.executeQuery(q);
                     
                     if(rs.next()){
                         String patientName = rs.getString("name");
                         String patient_id = rs.getString("pat_id");
+                        String patient_username = rs.getString("username");
 
-                        new PatientHomePage(patientName,patient_id,loginId).setVisible(true);
+                        new PatientHomePage(patientName,patient_id,login_id,patient_username).setVisible(true);
                         f.setVisible(false);
                     }else{
                         JOptionPane.showMessageDialog(null, "You have entered wrong Username and Password");
@@ -144,15 +141,16 @@ public class Login extends JFrame implements ActionListener {
                         f.setVisible(true);
                     }
                 }
-                else if(loginId==4){
-                    String q = "Select * from receptionist where username='"+name+"' and password='"+pass+"'";
+                else if(login_id==4){
+                        String q = "Select * from receptionist where username='"+name+"' and password='"+pass+"'";
                     rs = obj.stm.executeQuery(q);
                     
                     if(rs.next()){
                         String receptionistName = rs.getString("name");
                         String receptionist_id = rs.getString("rec_id");
+                        String reception_username = rs.getString("username");
 
-                        new ReceptionistHomePage(receptionistName,receptionist_id,loginId).setVisible(true);
+                        new ReceptionistHomePage(receptionistName,receptionist_id,login_id,reception_username).setVisible(true);
                         f.setVisible(false);
                     }else{
                         JOptionPane.showMessageDialog(null, "You have entered wrong Username and Password");
