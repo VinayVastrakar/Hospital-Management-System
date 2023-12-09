@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package hmis.Hospital;
 
 import java.awt.*;
@@ -9,14 +5,10 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.sql.*;
 
-/**
- *
- * @author HP
- */
 public class ViewPatient extends JFrame implements ActionListener {
  
     String []x={"Name","Username","Email","Father Name","Phone","Marital Status",
-        "City","Gender","Blood Group","Address","Disease","Date of Birth","Age"};
+        "City","Gender","Blood Group","Disease","Age","Address","Date of Birth"};
     JButton bt,bt1;
     String y[][]=new String[20][13];
     int i=0,j=0;
@@ -25,16 +17,25 @@ public class ViewPatient extends JFrame implements ActionListener {
     JTextField tf1;
     JPanel p1,p2,p3;
     Font f,f1;
+    String q;
     
-    ViewPatient(){
-        super("Petirnt Information");
+    ViewPatient(String username,int login_id)
+    {
+        super("Patient Information");
         setSize(1500,400);
         setLocation(1,1);
         
         f = new Font("MS UI Gothic", Font.BOLD,15);
         try{
             ConnectionClass obj = new ConnectionClass();
-            String q = "Select * from Patient";
+            
+            if(login_id==3){
+                q = "Select * from Patient where username='"+username+"'";
+            }
+            else{
+                q = "Select * from Patient";
+            }
+            
             ResultSet rest = obj.stm.executeQuery(q);
             while(rest.next()){
                 y[i][j++] = rest.getString("name");
@@ -147,7 +148,7 @@ public class ViewPatient extends JFrame implements ActionListener {
     }
         
     
-    public static void main(String[] args) {
-        new ViewPatient().setVisible(true);
-    }
+//    public static void main(String[] args) {
+//        new ViewPatient().setVisible(true);
+//    }
 }
