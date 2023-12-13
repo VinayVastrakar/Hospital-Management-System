@@ -12,7 +12,7 @@ public class AddPatient implements ActionListener{
     JFrame f;
     JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16;
     JTextField t1,t2,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14;
-    Choice gen;
+    Choice gen,mar;
     JPasswordField t3;
     JButton bt1,bt2;
     Font f1;
@@ -112,9 +112,12 @@ public class AddPatient implements ActionListener{
         l9.setForeground(Color.BLACK);
         l1.add(l9);
         
-        t7 = new JTextField();
-        t7.setBounds(200, 300, 150, 30);
-        l1.add(t7);
+        mar= new Choice();
+        mar.setFont(f1);
+        mar.add("Unmarried");
+        mar.add("Married");
+        mar.setBounds(200, 300, 150, 30);
+        l1.add(mar);
         
         
         l10= new JLabel("City");
@@ -230,7 +233,7 @@ public class AddPatient implements ActionListener{
              String email = t4.getText();
              String fName = t5.getText();
              String phone = t6.getText();
-             String maritalStatus = t7.getText();
+             String maritalStatus = mar.getSelectedItem();
              String city = t8.getText();
              String gender = gen.getSelectedItem();
              String blood = t10.getText();
@@ -260,4 +263,7 @@ public class AddPatient implements ActionListener{
          }
      }
     
+    public static void main(String[] args) {
+        new AddPatient();
+    }
 }

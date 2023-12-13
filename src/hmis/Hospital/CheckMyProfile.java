@@ -248,34 +248,26 @@ public class CheckMyProfile implements ActionListener{
              
              try{
                  ConnectionClass obj1 = new ConnectionClass();
+                 String q2="";
                  if(login_id==1){
-                     String q2 = "update doctor set age='"+age+"',phone='"+phone+"',city='"+city
+                     q2 = "update doctor set age='"+age+"',phone='"+phone+"',city='"+city
                          +"',email='"+email+"' where doc_id='"+add_id+"'";
-                    obj1.stm.executeUpdate(q2);
-                    JOptionPane.showMessageDialog(null, "Your Details Successfully updated");
-                    f.setVisible(false);
                  }
                  else if(login_id==2){
-                     String q2 = "update admin set age='"+age+"',phone='"+phone+"',city='"+city
+                     q2 = "update admin set age='"+age+"',phone='"+phone+"',city='"+city
                          +"',email='"+email+"' where admin_id='"+add_id+"'";
-                    obj1.stm.executeUpdate(q2);
-                    JOptionPane.showMessageDialog(null, "Your Details Successfully updated");
-                    f.setVisible(false);
                  }
                  else if(login_id==3){
-                     String q2 = "update patient set age='"+age+"',phone='"+phone+"',city='"+city
+                     q2 = "update patient set age='"+age+"',phone='"+phone+"',city='"+city
                          +"',email='"+email+"' where pat_id='"+add_id+"'";
-                    obj1.stm.executeUpdate(q2);
-                    JOptionPane.showMessageDialog(null, "Your Details Successfully updated");
-                    f.setVisible(false);
                  }
                  else if(login_id==4){
-                     String q2 = "update receptionist set age='"+age+"',phone='"+phone+"',city='"+city
+                     q2 = "update receptionist set age='"+age+"',phone='"+phone+"',city='"+city
                          +"',email='"+email+"' where rec_id='"+add_id+"'";
-                    obj1.stm.executeUpdate(q2);
-                    JOptionPane.showMessageDialog(null, "Your Details Successfully updated");
-                    f.setVisible(false);
                  }
+                obj1.stm.executeUpdate(q2);
+                JOptionPane.showMessageDialog(null, "Your Details Successfully updated");
+                f.setVisible(false);
                  
                  
              }
