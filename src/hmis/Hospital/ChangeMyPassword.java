@@ -15,11 +15,13 @@ public class ChangeMyPassword extends JFrame implements ActionListener{
     JTextField tf;
     JPasswordField pf;
     JButton bt1, bt2;
-    private String add_id;
+    private String admin_id;
+    int login_id;
     
-    ChangeMyPassword(String adminId){
+    ChangeMyPassword(String adminId,int login_id){
         
-        add_id = adminId;
+        admin_id = adminId;
+        this.login_id = login_id;
         
         f = new JFrame("Change Password");
         f.setBackground(Color.WHITE);
@@ -90,8 +92,24 @@ public class ChangeMyPassword extends JFrame implements ActionListener{
             
             try{
                 ConnectionClass obj = new ConnectionClass();
-                String q = "update admin set password='"+new_pass+"' where admin_id='"+add_id+
+                String q="";
+                if(login_id==1){
+                    q = "update doctor set password='"+new_pass+"' where doc_id='"+admin_id+
                         "' and password='"+old_pass+"'";
+                }
+                else if(login_id==2){
+                    q = "update admin set password='"+new_pass+"' where admin_id='"+admin_id+
+                        "' and password='"+old_pass+"'";
+                }
+                else if(login_id==3){
+                    q = "update patient set password='"+new_pass+"' where pat_id='"+admin_id+
+                        "' and password='"+old_pass+"'";
+                }
+                else if(login_id==4){
+                    q = "update receptionist set password='"+new_pass+"' where rec_id='"+admin_id+
+                        "' and password='"+old_pass+"'";
+                }
+                
                 int ss = obj.stm.executeUpdate(q);
                 if(ss==1){
                     JOptionPane.showMessageDialog(null, "Your Password is Successfully updated");

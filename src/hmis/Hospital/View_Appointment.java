@@ -20,8 +20,9 @@ public class View_Appointment extends JFrame implements ActionListener{
     JTextField tf1;
     JPanel p1,p2,p3;
     Font f,f1;
+    String q;
     
-   View_Appointment(){
+   View_Appointment(String username,int login_id){
         super("Appointment Information");
         setSize(1500,400);
         setLocation(1,1);
@@ -30,7 +31,17 @@ public class View_Appointment extends JFrame implements ActionListener{
         
         try{
             ConnectionClass obj = new ConnectionClass();
-            String q = "Select * from Appointment";
+            
+            if(login_id==1){
+                q= "Select * from Appointment where doctor_username='"+username+"'";
+            }
+            else if(login_id==3){
+                q = "Select * from Appointment where username='"+username+"'";
+            }
+            else{
+                q = "Select * from Appointment";
+            }
+            
             ResultSet rest = obj.stm.executeQuery(q);
             while(rest.next()){
                 y[i][j++] = rest.getString("app_id");
@@ -165,7 +176,4 @@ public class View_Appointment extends JFrame implements ActionListener{
         
     }
     
-    public static void main(String[] args) {
-        new View_Appointment().setVisible(true);
-    }
 }

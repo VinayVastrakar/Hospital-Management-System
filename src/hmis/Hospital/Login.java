@@ -20,7 +20,20 @@ public class Login extends JFrame implements ActionListener {
     
     Login(int login_id) {
         this.login_id = login_id;
-        f = new JFrame("Login Page");
+        
+        if(login_id==1){
+            f = new JFrame("Doctor Login Page");
+        }
+        else if(login_id==2){
+            f = new JFrame("Admin Login Page");
+        }
+        else if(login_id==3){
+            f = new JFrame("Patient Login Page");
+        }
+        else{
+            f = new JFrame("Reception Login Page");
+        }
+        
         f.setBackground(Color.WHITE);
         f.setLayout(null);
         

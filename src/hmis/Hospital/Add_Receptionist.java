@@ -253,8 +253,4 @@ public class Add_Receptionist implements ActionListener{
          }
      }
     
-    public static void main(String[] args) {
-        new Add_Receptionist();
-    }
-    
 }

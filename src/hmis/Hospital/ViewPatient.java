@@ -40,7 +40,6 @@ public class ViewPatient extends JFrame implements ActionListener {
             while(rest.next()){
                 y[i][j++] = rest.getString("name");
                 y[i][j++] = rest.getString("Username");
-//              y[i][j++] = rest.getString("password");
                 y[i][j++] = rest.getString("email");
                 y[i][j++] = rest.getString("father_name");
                 y[i][j++] = rest.getString("phone");

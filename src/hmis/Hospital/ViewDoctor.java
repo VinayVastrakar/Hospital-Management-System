@@ -77,7 +77,7 @@ public class ViewDoctor extends JFrame implements ActionListener  {
             bt= new JButton("Delete Doctor");  // set buttons
             bt1= new JButton("Edit Doctor");
 
-            bt.addActionListener(this); // 
+            bt.addActionListener(this);
             bt1.addActionListener(this);
 
             bt.setBackground(Color.black);
@@ -141,7 +141,4 @@ public class ViewDoctor extends JFrame implements ActionListener  {
         
     }
     
-    //    public static void main(String[] args) {
-    //        new ViewDoctor().setVisible(true);
-    //    }
 }

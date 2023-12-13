@@ -8,7 +8,7 @@ import javax.swing.*;
 public class DoctorHomePage extends JFrame implements ActionListener {
     JLabel l1;
     Font f,f1,f2;
-    private String doctorId;
+    private String doctor_id;
     private int login_id ;
     String username;
     
@@ -17,11 +17,11 @@ public class DoctorHomePage extends JFrame implements ActionListener {
         setLocation(0,0);
         setSize(1500,720);
        
-        doctorId = doctor_id;
+        this.doctor_id = doctor_id;
         this.login_id = login_id;
         this.username = username;
         
-        ImageIcon img = new ImageIcon(ClassLoader.getSystemResource("hmis\\Hospital\\Images\\Home1.jpg"));
+        ImageIcon img = new ImageIcon(ClassLoader.getSystemResource("hmis\\Hospital\\Images\\Doctor.jpg"));
         Image i = img.getImage().getScaledInstance(1500, 720, Image.SCALE_SMOOTH);
         ImageIcon img1 = new ImageIcon(i);
         l1 = new JLabel(img1);
@@ -34,27 +34,26 @@ public class DoctorHomePage extends JFrame implements ActionListener {
         m1.getAlignmentX();
         
         JMenu men1 = new JMenu("Doctor");
-//        JMenuItem ment1 = new JMenuItem("Add Doctor");
+
         JMenuItem ment2 = new JMenuItem("View Doctor");
-//        men1.add(ment1);
+
         men1.add(ment2);
         
         JMenu men2 = new JMenu("Patient");
-//        JMenuItem ment3 = new JMenuItem("Add Patient");
+
         JMenuItem ment4 = new JMenuItem("View Patient");
-//        men2.add(ment3);
         men2.add(ment4);
         
         JMenu men3 = new JMenu("Receptionist");
-//        JMenuItem ment5 = new JMenuItem("Add Receptionist");
+
         JMenuItem ment6 = new JMenuItem("View Receptionist");
-//        men3.add(ment5);
+
         men3.add(ment6);
         
         JMenu men4 = new JMenu("Appiontment");
-//        JMenuItem ment7 = new JMenuItem("Add Appiontment");
+
         JMenuItem ment8 = new JMenuItem("View Appiontment");
-//        men4.add(ment7);
+
         men4.add(ment8);
         
         JMenu men5 = new JMenu("Hii, Doctor("+doctorName+")");
@@ -81,19 +80,16 @@ public class DoctorHomePage extends JFrame implements ActionListener {
         men5.setFont(f1);
         men6.setFont(f1);
         
-//        ment1.setFont(f);
+
         ment2.setFont(f);
-//        ment3.setFont(f);
         ment4.setFont(f);
-//        ment5.setFont(f);
         ment6.setFont(f);
-//        ment7.setFont(f);
         ment8.setFont(f);
         ment9.setFont(f);
         ment10.setFont(f);
         ment11.setFont(f);
         
-        m1.setBackground(Color.YELLOW);
+        m1.setBackground(Color.LIGHT_GRAY);
         
         men1.setForeground(Color.BLACK);
         men2.setForeground(Color.BLACK);
@@ -102,10 +98,7 @@ public class DoctorHomePage extends JFrame implements ActionListener {
         men5.setForeground(Color.BLACK);
         men6.setForeground(Color.RED);
         
-//        ment1.setBackground(Color.GREEN);
-//        ment3.setBackground(Color.GREEN);
-//        ment5.setBackground(Color.GREEN);
-//        ment7.setBackground(Color.GREEN);
+
         ment9.setBackground(Color.GREEN);
         ment11.setBackground(Color.RED);
         
@@ -115,13 +108,10 @@ public class DoctorHomePage extends JFrame implements ActionListener {
         ment8.setBackground(Color.BLUE);
         ment10.setBackground(Color.BLUE);
         
-//        ment1.addActionListener(this);
+
         ment2.addActionListener(this);
-//        ment3.addActionListener(this);
         ment4.addActionListener(this);
-//        ment5.addActionListener(this);
         ment6.addActionListener(this);
-//       g ment7.addActionListener(this);
         ment8.addActionListener(this);
         ment9.addActionListener(this);
         ment10.addActionListener(this);
@@ -145,24 +135,20 @@ public class DoctorHomePage extends JFrame implements ActionListener {
              new ViewPatient(username,login_id).setVisible(true);
          }
          else if(comnd.equals("View Receptionist")){
-             new View_Receptionist().setVisible(true);
+             new View_Receptionist(login_id).setVisible(true);
          }
          else if(comnd.equals("View Appiontment")){
-             new View_Appointment().setVisible(true);
+             new View_Appointment(username,login_id).setVisible(true);
          }
          else if(comnd.equals("My Profile")){
-             new CheckMyProfile();
+             new CheckMyProfile(doctor_id,login_id);
          }
          else if(comnd.equals("Change Password")){
-             new ChangeMyPassword(doctorId);
+             new ChangeMyPassword(doctor_id,login_id);
          }
          else if(comnd.equals("Exit")){
              this.setVisible(false);
              new Index();
          }
      }
-    
-//    public static void main(String[] args) {
-//        new AdminHomePage().setVisible(true);
-//    }
 }

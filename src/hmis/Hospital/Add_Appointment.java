@@ -24,8 +24,8 @@ public class Add_Appointment extends JFrame implements ActionListener{
     Add_Appointment(){
         
         super("Add Appointment");
-        setLocation(450,10);
-        setSize(740,730);
+        setLocation(130,0);
+        setSize(1000,690);
         
         f= new Font("Arial",Font.BOLD,25);
         f1 = new Font("Arial", Font.BOLD,18);

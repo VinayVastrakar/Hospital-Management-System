@@ -12,13 +12,17 @@ public class AddPatient implements ActionListener{
     JFrame f;
     JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16;
     JTextField t1,t2,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14;
+    Choice gen;
     JPasswordField t3;
     JButton bt1,bt2;
+    Font f1;
     
     AddPatient(){
         f = new JFrame("Add Patient");
         f.setBackground(Color.WHITE);
         f.setLayout(null);
+        
+        f1 = new Font("Arial", Font.BOLD,18);
         
         l1 = new JLabel();
         l1.setBounds(0, 0, 900, 600);
@@ -130,10 +134,14 @@ public class AddPatient implements ActionListener{
         l11.setForeground(Color.BLACK);
         l1.add(l11);
         
-        t9 = new JTextField();
-        t9.setBounds(200, 350, 150, 30);
-        l1.add(t9);
-        
+        gen = new Choice();
+        gen.setFont(f1);
+        gen.add("Male");
+        gen.add("Female");
+        gen.add("Other");
+        gen.setBounds(200, 355, 150, 40);
+        l1.add(gen);
+
         
         l12= new JLabel("Blood Group");
         l12.setBounds(450, 350, 140, 30);
@@ -224,7 +232,7 @@ public class AddPatient implements ActionListener{
              String phone = t6.getText();
              String maritalStatus = t7.getText();
              String city = t8.getText();
-             String gender = t9.getText();
+             String gender = gen.getSelectedItem();
              String blood = t10.getText();
              String disease = t11.getText();
              String age = t12.getText();
@@ -252,7 +260,4 @@ public class AddPatient implements ActionListener{
          }
      }
     
-    public static void main(String[] args) {
-        new AddPatient();
-    }
 }

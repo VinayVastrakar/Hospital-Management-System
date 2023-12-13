@@ -256,7 +256,4 @@ public class AddDoctor implements ActionListener{
          }
      }
      
-    public static void main(String[] args) {
-        new AddDoctor();
-    }
 }

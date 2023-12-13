@@ -8,7 +8,7 @@ import javax.swing.*;
 public class AdminHomePage extends JFrame implements ActionListener {
     JLabel l1;
     Font f,f1,f2;
-    public String adminId;
+    public String admin_id;
     int login_id;
     String username;
     
@@ -17,11 +17,11 @@ public class AdminHomePage extends JFrame implements ActionListener {
         setLocation(0,0);
         setSize(1500,720);
        
-        adminId = admin_id;
+        this.admin_id = admin_id;
         login_id = loginId;
         this.username= username;
         
-        ImageIcon img = new ImageIcon(ClassLoader.getSystemResource("hmis\\Hospital\\Images\\Home1.jpg"));
+        ImageIcon img = new ImageIcon(ClassLoader.getSystemResource("hmis\\Hospital\\Images\\login.jpg"));
         Image i = img.getImage().getScaledInstance(1500, 720, Image.SCALE_SMOOTH);
         ImageIcon img1 = new ImageIcon(i);
         l1 = new JLabel(img1);
@@ -93,7 +93,7 @@ public class AdminHomePage extends JFrame implements ActionListener {
         ment10.setFont(f);
         ment11.setFont(f);
         
-        m1.setBackground(Color.YELLOW);
+        m1.setBackground(Color.LIGHT_GRAY);
         
         men1.setForeground(Color.BLACK);
         men2.setForeground(Color.BLACK);
@@ -155,27 +155,24 @@ public class AdminHomePage extends JFrame implements ActionListener {
              new Add_Receptionist();
          }
          else if(comnd.equals("View Receptionist")){
-             new View_Receptionist().setVisible(true);
+             new View_Receptionist(login_id).setVisible(true);
          }
          else if(comnd.equals("Add Appiontment")){
              new Add_Appointment().setVisible(true);
          }
          else if(comnd.equals("View Appiontment")){
-             new View_Appointment().setVisible(true);
+             new View_Appointment(username,login_id).setVisible(true);
          }
          else if(comnd.equals("My Profile")){
-             new CheckMyProfile();
+             new CheckMyProfile(admin_id,login_id);
          }
          else if(comnd.equals("Change Password")){
-             new ChangeMyPassword(adminId);
+             new ChangeMyPassword(admin_id,login_id);
          }
          else if(comnd.equals("Exit")){
              this.setVisible(false);
              new Index();
          }
      }
-    
-//    public static void main(String[] args) {
-//        new AdminHomePage().setVisible(true);
-//    }
+  
 }

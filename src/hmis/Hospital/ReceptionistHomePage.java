@@ -34,9 +34,7 @@ public class ReceptionistHomePage extends JFrame implements ActionListener {
         m1.getAlignmentX();
         
         JMenu men1 = new JMenu("Doctor");
-//        JMenuItem ment1 = new JMenuItem("Add Doctor");
         JMenuItem ment2 = new JMenuItem("View Doctor");
-//        men1.add(ment1);
         men1.add(ment2);
         
         JMenu men2 = new JMenu("Patient");
@@ -46,9 +44,7 @@ public class ReceptionistHomePage extends JFrame implements ActionListener {
         men2.add(ment4);
         
         JMenu men3 = new JMenu("Receptionist");
-//        JMenuItem ment5 = new JMenuItem("Add Receptionist");
         JMenuItem ment6 = new JMenuItem("View Receptionist");
-//        men3.add(ment5);
         men3.add(ment6);
         
         JMenu men4 = new JMenu("Appiontment");
@@ -80,12 +76,9 @@ public class ReceptionistHomePage extends JFrame implements ActionListener {
         men4.setFont(f1);
         men5.setFont(f1);
         men6.setFont(f1);
-        
-//        ment1.setFont(f);
         ment2.setFont(f);
         ment3.setFont(f);
         ment4.setFont(f);
-//        ment5.setFont(f);
         ment6.setFont(f);
         ment7.setFont(f);
         ment8.setFont(f);
@@ -101,25 +94,21 @@ public class ReceptionistHomePage extends JFrame implements ActionListener {
         men4.setForeground(Color.BLACK);
         men5.setForeground(Color.BLACK);
         men6.setForeground(Color.RED);
-        
-//        ment1.setBackground(Color.GREEN);
         ment3.setBackground(Color.GREEN);
-//        ment5.setBackground(Color.GREEN);
         ment7.setBackground(Color.GREEN);
         ment9.setBackground(Color.GREEN);
         ment11.setBackground(Color.RED);
-        
         ment2.setBackground(Color.BLUE);
         ment4.setBackground(Color.BLUE);
         ment6.setBackground(Color.BLUE);
         ment8.setBackground(Color.BLUE);
         ment10.setBackground(Color.BLUE);
         
-//        ment1.addActionListener(this);
+
         ment2.addActionListener(this);
         ment3.addActionListener(this);
         ment4.addActionListener(this);
-//        ment5.addActionListener(this);
+
         ment6.addActionListener(this);
         ment7.addActionListener(this);
         ment8.addActionListener(this);
@@ -148,19 +137,19 @@ public class ReceptionistHomePage extends JFrame implements ActionListener {
              new ViewPatient(username,login_id).setVisible(true);
          }
          else if(comnd.equals("View Receptionist")){
-             new View_Receptionist().setVisible(true);
+             new View_Receptionist(login_id).setVisible(true);
          }
          else if(comnd.equals("View Appiontment")){
-             new View_Appointment().setVisible(true);
+             new View_Appointment(username,login_id).setVisible(true);
          }
          else if(comnd.equals("Add Appiontment")){
              new Add_Appointment().setVisible(true);
          }
          else if(comnd.equals("My Profile")){
-             new CheckMyProfile();
+             new CheckMyProfile(recepId,login_id);
          }
          else if(comnd.equals("Change Password")){
-             new ChangeMyPassword(recepId);
+             new ChangeMyPassword(recepId,login_id);
          }
          else if(comnd.equals("Exit")){
              this.setVisible(false);
@@ -168,7 +157,5 @@ public class ReceptionistHomePage extends JFrame implements ActionListener {
          }
      }
     
-//    public static void main(String[] args) {
-//        new AdminHomePage().setVisible(true);
-//    }
+
 }
