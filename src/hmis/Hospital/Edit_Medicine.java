@@ -36,42 +36,48 @@ public class Edit_Medicine extends JFrame implements ActionListener{
                 ImageIcon img1 = new ImageIcon(i);
                 l1.setIcon(img1);
 
-                l2= new JLabel("Drug Code");
-                l2.setBounds(280, 30, 500, 50);
+                l2= new JLabel("Edit Medicine Quantity");
+                l2.setBounds(240, 30, 500, 50);
                 l2.setFont(new Font("Arial" , Font.BOLD,30));
                 l2.setForeground(Color.BLACK);
                 l1.add(l2);
 
-                l3= new JLabel("Name");
+                l3= new JLabel("Drug Code");
                 l3.setBounds(50, 150, 150, 30);
                 l3.setFont(new Font("Arial" , Font.BOLD,20));
                 l3.setForeground(Color.BLACK);
                 l1.add(l3);
                 
-                l4= new JLabel("Quantity");
+                l4= new JLabel("Name");
                 l4.setBackground(Color.white);
                 l4.setBounds(450, 150, 200, 30);
                 l4.setFont(new Font("Arial" , Font.BOLD,20));
                 l4.setForeground(Color.BLACK);
                 l1.add(l4);
         
-                l5= new JLabel("Drug Type");
+                l5= new JLabel("Quantity");
                 l5.setBounds(50, 200, 100, 30);
                 l5.setFont(new Font("Arial" , Font.BOLD,20));
                 l5.setForeground(Color.BLACK);
                 l1.add(l5);
                 
-                l6= new JLabel("Expiry date");
+                l6= new JLabel("Drug Type");
                 l6.setBounds(450, 200, 200, 30);
                 l6.setFont(new Font("Arial" , Font.BOLD,20));
                 l6.setForeground(Color.BLACK);
                 l1.add(l6);
                 
-                l7= new JLabel("Unit Rate");
+                l7= new JLabel("Expiry Date");
                 l7.setBounds(50, 250, 150, 30);
                 l7.setFont(new Font("Arial" , Font.BOLD,20));
                 l7.setForeground(Color.BLACK);
                 l1.add(l7);
+                
+                l8= new JLabel("Unit Rate");
+                l8.setBounds(450, 250, 100, 30);
+                l8.setFont(new Font("Arial" , Font.BOLD,20));
+                l8.setForeground(Color.BLACK);
+                l1.add(l8);
                 
                 
         
@@ -184,5 +190,9 @@ public class Edit_Medicine extends JFrame implements ActionListener{
          if(ae.getSource()== bt2){
              f.setVisible(false);
          }
+    }
+    
+    public static void main(String[] args) {
+        new Edit_Medicine("89258").setVisible(true);
     }
 }
