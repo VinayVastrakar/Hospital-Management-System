@@ -109,6 +109,10 @@ public class ChangeMyPassword extends JFrame implements ActionListener{
                     q = "update receptionist set password='"+new_pass+"' where rec_id='"+admin_id+
                         "' and password='"+old_pass+"'";
                 }
+                else if(login_id==5){
+                    q = "update dispensary set password='"+new_pass+"' where rec_id='"+admin_id+
+                        "' and password='"+old_pass+"'";
+                }
                 
                 int ss = obj.stm.executeUpdate(q);
                 if(ss==1){

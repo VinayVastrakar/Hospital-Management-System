@@ -10,7 +10,7 @@ public class Index extends JFrame implements ActionListener {
     
     JFrame f;
     JLabel l1,l2,l3,l4;
-    JButton b1,b2,b3,b4;
+    JButton b1,b2,b3,b4,b5;
     int loginId;
     
     
@@ -69,10 +69,19 @@ public class Index extends JFrame implements ActionListener {
         b4.setForeground(Color.WHITE);
         l1.add(b4);
         
+        b5= new JButton("Dispensary");
+        b5.setBounds(450, 390, 150, 40);
+        b5.setFont(new Font("Arial",Font.CENTER_BASELINE,20));
+        b5.setBackground(Color.BLACK);
+        b5.setForeground(Color.WHITE);
+        l1.add(b5);
+        
+        
         b1.addActionListener(this);
         b2.addActionListener(this);
         b3.addActionListener(this);
         b4.addActionListener(this);
+        b5.addActionListener(this);
         
         f.add(l1);
         f.setSize(800, 570);
@@ -100,6 +109,11 @@ public class Index extends JFrame implements ActionListener {
         } 
         if(ae.getSource()==b4){//reception
             loginId = 4;
+            f.setVisible(false);
+            new Login(loginId);
+        }
+        if(ae.getSource()==b5){//dispensary
+            loginId = 5;
             f.setVisible(false);
             new Login(loginId);
         }

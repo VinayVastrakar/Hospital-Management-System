@@ -30,8 +30,11 @@ public class Login extends JFrame implements ActionListener {
         else if(login_id==3){
             f = new JFrame("Patient Login Page");
         }
-        else{
+        else if(login_id==4){
             f = new JFrame("Reception Login Page");
+        }
+        else if(login_id==5){
+            f = new JFrame("Dispensary Login Page");
         }
         
         f.setBackground(Color.WHITE);
@@ -155,7 +158,7 @@ public class Login extends JFrame implements ActionListener {
                     }
                 }
                 else if(login_id==4){
-                        String q = "Select * from receptionist where username='"+name+"' and password='"+pass+"'";
+                    String q = "Select * from receptionist where username='"+name+"' and password='"+pass+"'";
                     rs = obj.stm.executeQuery(q);
                     
                     if(rs.next()){
@@ -164,6 +167,23 @@ public class Login extends JFrame implements ActionListener {
                         String reception_username = rs.getString("username");
 
                         new ReceptionistHomePage(receptionistName,receptionist_id,login_id,reception_username).setVisible(true);
+                        f.setVisible(false);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "You have entered wrong Username and Password");
+                        f.setVisible(false);
+                        f.setVisible(true);
+                    }
+                }
+                else if(login_id==5){
+                    String q = "Select * from dispensary where username='"+name+"' and password='"+pass+"'";
+                    rs = obj.stm.executeQuery(q);
+                    
+                    if(rs.next()){
+                        String DispensaryName = rs.getString("name");
+                        String dispensary_id = rs.getString("dec_id");
+                        String dispensary_username = rs.getString("username");
+
+                        new DispensaryHomePage(DispensaryName,dispensary_id,login_id,dispensary_username).setVisible(true);
                         f.setVisible(false);
                     }else{
                         JOptionPane.showMessageDialog(null, "You have entered wrong Username and Password");
