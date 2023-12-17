@@ -12,12 +12,12 @@ public class DispensaryHomePage extends JFrame implements ActionListener {
     private int login_id ;
     String username;
     
-    DispensaryHomePage(String despensaryName, String doctor_id,int login_id,String username){
+    DispensaryHomePage(String despensaryName, String dec_id,int login_id,String username){
         super("Dispensary Home Page");
         setLocation(0,0);
         setSize(1500,720);
        
-        this.dec_id = doctor_id;
+        this.dec_id = dec_id;
         this.login_id = login_id;
         this.username = username;
         
@@ -48,6 +48,10 @@ public class DispensaryHomePage extends JFrame implements ActionListener {
         men3.add(ment6);
         men3.add(ment7);
         
+        JMenu men4 = new JMenu("Priscription");
+        JMenuItem ment8 = new JMenuItem("View Priscription");
+        men4.add(ment8);
+        
         
         JMenu men5 = new JMenu("Despensary ("+despensaryName+")");
         JMenuItem ment9 = new JMenuItem("My Profile");
@@ -61,11 +65,13 @@ public class DispensaryHomePage extends JFrame implements ActionListener {
         
         m1.add(men1);
         m1.add(men3);
+        m1.add(men4);
         m1.add(men5);
         m1.add(men6);
         
         men1.setFont(f1);
         men3.setFont(f1);
+        men4.setFont(f1);
         men5.setFont(f1);
         men6.setFont(f1);
         
@@ -74,6 +80,7 @@ public class DispensaryHomePage extends JFrame implements ActionListener {
         ment3.setFont(f);
         ment6.setFont(f);
         ment7.setFont(f);
+        ment8.setFont(f);
         ment9.setFont(f);
         ment10.setFont(f);
         ment11.setFont(f);
@@ -82,10 +89,11 @@ public class DispensaryHomePage extends JFrame implements ActionListener {
         
         men1.setForeground(Color.BLACK);
         men3.setForeground(Color.BLACK);
+        men4.setForeground(Color.BLACK);
         men5.setForeground(Color.BLACK);
         men6.setForeground(Color.RED);
         
-
+        ment8.setBackground(Color.GREEN);
         ment9.setBackground(Color.GREEN);
         ment11.setBackground(Color.RED);
         
@@ -99,6 +107,7 @@ public class DispensaryHomePage extends JFrame implements ActionListener {
         ment2.addActionListener(this);
         ment3.addActionListener(this);
         ment6.addActionListener(this);
+        ment8.addActionListener(this);
         ment9.addActionListener(this);
         ment10.addActionListener(this);
         ment11.addActionListener(this);
@@ -118,17 +127,20 @@ public class DispensaryHomePage extends JFrame implements ActionListener {
              new AddMedicine();
          }
          else if(comnd.equals("View Medicine")){
-             new ViewPatient(username,login_id).setVisible(true);
+             new View_Medicine().setVisible(true);
          }
          else if(comnd.equals("Make Billing")){
-             new View_Receptionist(login_id).setVisible(true);
+             new Make_Billing(login_id).setVisible(true);
          }
          else if(comnd.equals("View Billing")){
-             new View_Appointment(username,login_id).setVisible(true);
+             new View_Billing(username,login_id).setVisible(true);
          }
-         else if(comnd.equals("My Profile")){
-             new CheckMyProfile(dec_id,login_id);
+         else if(comnd.equals("View Priscription")){
+             new View_Priscription(username,login_id).setVisible(true);
          }
+//         else if(comnd.equals("My Profile")){
+//             new CheckMyProfile(dec_id,login_id);
+//         }
          else if(comnd.equals("Change Password")){
              new ChangeMyPassword(dec_id,login_id);
          }

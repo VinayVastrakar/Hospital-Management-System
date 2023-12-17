@@ -144,7 +144,6 @@ public class AddMedicine implements ActionListener{
                  String q = "insert into medicine values('"+med_id+"','"+name+"','"+drug_code+"','"+quantity+"','"
                          +drug_type+"','"+expiry_date+"','"+unit_rate+"')";
                  
-//                 ("INSERT INTO PHONEDIARY VALUES(" + name + ",236821)");
                  obj.stm.executeUpdate(q);
                  JOptionPane.showMessageDialog(null, "Medicine Details Successfull Inserted");
                  f.setVisible(false);
