@@ -9,7 +9,7 @@ public class ViewPatient extends JFrame implements ActionListener {
  
     String []x={"Name","Username","Email","Father Name","Phone","Marital Status",
         "City","Gender","Blood Group","Disease","Age","Address","Date of Birth"};
-    JButton bt,bt1;
+    JButton bt,bt1,bt2;
     String y[][]=new String[20][13];
     int i=0,j=0;
     JTable t;
@@ -18,12 +18,15 @@ public class ViewPatient extends JFrame implements ActionListener {
     JPanel p1,p2,p3;
     Font f,f1;
     String q;
+    int login_id;
     
     ViewPatient(String username,int login_id)
     {
+        
         super("Patient Information");
         setSize(1500,400);
         setLocation(1,1);
+        this.login_id = login_id;
         
         f = new Font("MS UI Gothic", Font.BOLD,15);
         try{
@@ -64,6 +67,9 @@ public class ViewPatient extends JFrame implements ActionListener {
         }
         JScrollPane sp =new JScrollPane(t);
         f1= new Font("Lucida Fax", Font.BOLD,25);
+        
+        if(login_id==1 ||login_id==2 || login_id==4 ){
+        
         l1= new JLabel("Patient Username");
         l2= new JLabel("Delete or Edit Any Patient");
         
@@ -76,16 +82,21 @@ public class ViewPatient extends JFrame implements ActionListener {
         
         bt= new JButton("Delete Patient");  // set buttons
         bt1= new JButton("Edit Patient");
+        bt2 = new JButton("Add Prescription");
         
         bt.addActionListener(this); // 
         bt1.addActionListener(this);
+        bt2.addActionListener(this);
         
         bt.setBackground(Color.black);
         bt1.setBackground(Color.black);
+        bt2.setBackground(Color.black);
         
         bt.setForeground(Color.red);
         bt1.setForeground(Color.yellow);
+        bt2.setForeground(Color.green);
         
+           
         tf1 = new JTextField();
         tf1.setFont(f);
         
@@ -94,11 +105,12 @@ public class ViewPatient extends JFrame implements ActionListener {
         p1.add(l2);
         
         p2 = new JPanel();
-        p2.setLayout(new GridLayout(1,4,10,10));
+        p2.setLayout(new GridLayout(1,5,10,10));
         p2.add(l1);
         p2.add(tf1);
         p2.add(bt);
         p2.add(bt1);
+        p2.add(bt2);
          
         p3 = new JPanel();
         p3.setLayout(new GridLayout(2,1,10,10));
@@ -108,8 +120,9 @@ public class ViewPatient extends JFrame implements ActionListener {
         p1.setBackground(Color.black);
         p2.setBackground(Color.black);
         p3.setBackground(Color.black);
-        
+       
         add(p3,"South");
+        }
         add(sp);
     }
     
@@ -118,22 +131,28 @@ public class ViewPatient extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae){
          String username = tf1.getText();
         if(ae.getSource()==bt){
-            if(username.isEmpty()){
-                JOptionPane.showMessageDialog(null,"Please fill Patient Username !");
+            if(login_id==1){
+                JOptionPane.showMessageDialog(null,"You have not permission to delete patient!");
             }
             else{
-                try{
-                ConnectionClass obj1 = new ConnectionClass();
-                String q = "delete from patient where username='"+username +"'";
-                obj1.stm.executeUpdate(q);
-//                String q1 = "update appointment set appointment_status = 'Cancel' where patient_username='"+username+"'";
-//                obj1.stm.executeUpdate(q1);
-                setVisible(false);
+                if(username.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill Patient Username !");
                 }
-                catch(Exception e){
-                    e.printStackTrace();
+                else{
+                    try{
+                    ConnectionClass obj1 = new ConnectionClass();
+                    String q = "delete from patient where username='"+username +"'";
+                    obj1.stm.executeUpdate(q);
+    //                String q1 = "update appointment set appointment_status = 'Cancel' where patient_username='"+username+"'";
+    //                obj1.stm.executeUpdate(q1);
+                    setVisible(false);
+                    }
+                    catch(Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
+            
         }
         if(ae.getSource()==bt1){
              if(username.isEmpty()){
@@ -144,10 +163,33 @@ public class ViewPatient extends JFrame implements ActionListener {
                  new EditPatient(username).setVisible(true);
              }
         }
+        if(ae.getSource()==bt2){
+            if(login_id==1||login_id==2){
+                if(username.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill Patient Username !");
+                }
+                else{
+                    try{
+                    ConnectionClass obj1 = new ConnectionClass();
+                    String q = "delete from patient where username='"+username +"'";
+                    obj1.stm.executeUpdate(q);
+    //                String q1 = "update appointment set appointment_status = 'Cancel' where patient_username='"+username+"'";
+    //                obj1.stm.executeUpdate(q1);
+                    setVisible(false);
+                    }
+                    catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"You have not Permission to patient perscribe!");
+            } 
+        }
     }
         
     
-//    public static void main(String[] args) {
-//        new ViewPatient().setVisible(true);
-//    }
+    public static void main(String[] args) {
+        new ViewPatient("Daku",1).setVisible(true);
+    }
 }

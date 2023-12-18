@@ -106,7 +106,7 @@ public class View_Medicine extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae){
         String med_id = tf1.getText();
         if(ae.getSource()==bt){
-            JOptionPane.showMessageDialog(null,"Delete Button Ts Temporary Disable");
+            JOptionPane.showMessageDialog(null,"Delete Button Temporary Disable");
 //            if(med_id.isEmpty()){
 //                JOptionPane.showMessageDialog(null,"Please fill Medicine Id !");
 //            }
