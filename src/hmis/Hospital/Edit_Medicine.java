@@ -191,7 +191,7 @@ public class Edit_Medicine extends JFrame implements ActionListener{
              f.setVisible(false);
          }
     }
-    
+            
     public static void main(String[] args) {
         new Edit_Medicine("89258").setVisible(true);
     }
