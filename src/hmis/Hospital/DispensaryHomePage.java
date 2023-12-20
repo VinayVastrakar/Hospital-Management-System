@@ -124,13 +124,13 @@ public class DispensaryHomePage extends JFrame implements ActionListener {
          String comnd = ae.getActionCommand();
          
          if(comnd.equals("Add Medicine")){
-             new AddMedicine();
+             new Add_Medicine();
          }
          else if(comnd.equals("View Medicine")){
              new View_Medicine().setVisible(true);
          }
          else if(comnd.equals("Make Billing")){
-             new Make_Billing(login_id).setVisible(true);
+             new Make_Billing(login_id).setVisible(true);  
          }
          else if(comnd.equals("View Billing")){
              new View_Billing(username,login_id).setVisible(true);

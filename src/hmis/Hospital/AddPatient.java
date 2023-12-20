@@ -17,6 +17,7 @@ public class AddPatient implements ActionListener{
     JButton bt1,bt2;
     Font f1;
     
+    
     AddPatient(){
         f = new JFrame("Add Patient");
         f.setBackground(Color.WHITE);
