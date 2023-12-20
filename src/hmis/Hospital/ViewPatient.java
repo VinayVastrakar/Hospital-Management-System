@@ -164,22 +164,14 @@ public class ViewPatient extends JFrame implements ActionListener {
              }
         }
         if(ae.getSource()==bt2){
-            if(login_id==1||login_id==2){
+            if(login_id==1){
                 if(username.isEmpty()){
-                JOptionPane.showMessageDialog(null,"Please fill Patient Username !");
+                 JOptionPane.showMessageDialog(null,"Please fill Patient Username !");
                 }
                 else{
-                    try{
-                    ConnectionClass obj1 = new ConnectionClass();
-                    String q = "delete from patient where username='"+username +"'";
-                    obj1.stm.executeUpdate(q);
-    //                String q1 = "update appointment set appointment_status = 'Cancel' where patient_username='"+username+"'";
-    //                obj1.stm.executeUpdate(q1);
                     setVisible(false);
-                    }
-                    catch(Exception e){
-                        e.printStackTrace();
-                    }
+                    new View_Prescription(username).setVisible(true);
+                    new Add_Prescription(username,login_id).setVisible(true);
                 }
             }
             else{

@@ -1,14 +1,15 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package hmis.Hospital;
-
 
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 import javax.swing.*;
-import java.sql.*;
 
-
-public class AddDoctor implements ActionListener{
+public class Add_Prescription extends JFrame implements ActionListener{
     
     JFrame f;
     JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16;
@@ -18,8 +19,8 @@ public class AddDoctor implements ActionListener{
     JPasswordField t3;
     JButton bt1,bt2;
     
-    
-    AddDoctor(){
+    Add_Prescription(){
+        
         f = new JFrame("Add Doctor");
         f.setBackground(Color.WHITE);
         f.setLayout(null);
@@ -27,29 +28,32 @@ public class AddDoctor implements ActionListener{
         f1= new Font("Arial" , Font.CENTER_BASELINE,18); 
         
         l1 = new JLabel();
-        l1.setBounds(0, 0, 900, 600);
+        l1.setBounds(0, 0, 1000, 150);
         l1.setLayout(null);
         
         ImageIcon img = new ImageIcon(ClassLoader.getSystemResource("hmis\\Hospital\\Images\\AddDoctor.jpg"));
-        Image i = img.getImage().getScaledInstance(900, 600, Image.SCALE_SMOOTH);
+        Image i = img.getImage().getScaledInstance(1000, 150, Image.SCALE_SMOOTH);
         ImageIcon img1 = new ImageIcon(i);
         l1.setIcon(img1);
         
-        l2= new JLabel("Add Doctor Details");
-        l2.setBounds(280, 30, 500, 50);
-        l2.setFont(new Font("Arial" , Font.BOLD,30));
+        l2= new JLabel("Medicine Name");
+        l2.setBounds(20, 0, 150, 50);
+        l2.setFont(new Font("Arial" , Font.BOLD,18));
         l2.setForeground(Color.BLACK);
         l1.add(l2);
         
-        l3= new JLabel("Name");
-        l3.setBounds(50, 150, 150, 30);
-        l3.setFont(new Font("Arial" , Font.BOLD,20));
+        t1 = new JTextField();
+        t1.setBounds(20, 50, 150, 30);
+        l1.add(t1);
+        
+        
+        l3= new JLabel("Advice");
+        l3.setBounds(200, 0, 150, 50);
+        l3.setFont(new Font("Arial" , Font.BOLD,18));
         l3.setForeground(Color.BLACK);
         l1.add(l3);
         
-        t1 = new JTextField();
-        t1.setBounds(200, 150, 150, 30);
-        l1.add(t1);
+        
         
         
         l4= new JLabel("Username");
@@ -262,15 +266,14 @@ public class AddDoctor implements ActionListener{
         f.add(l1);
         
         f.setVisible(true);
-        f.setSize(900,600);
-        f.setLocation(210,50);
+        f.setSize(1000,150);
+        f.setLocation(150,400);
         f.setResizable(false);
         
     }
-    
     public void actionPerformed(ActionEvent ae){
-     
-         if(ae.getSource()==bt1){
+        
+        if(ae.getSource()==bt1){
              String name = t1.getText();
              String username = t2.getText();
              String password = t3.getText();
@@ -306,10 +309,8 @@ public class AddDoctor implements ActionListener{
          if(ae.getSource()== bt2){
              f.setVisible(false);
          }
-     }
-    
-    public static void main(String[] args) {
-        new AddDoctor();
     }
-     
+    public static void main(String[] args) {
+        new Add_Prescription();
+    }
 }
