@@ -171,7 +171,7 @@ public class ViewPatient extends JFrame implements ActionListener {
                 else{
                     setVisible(false);
                     new View_Prescription(username).setVisible(true);
-                    new Add_Prescription(username).setVisible(true);
+                    new Add_Prescription(username,login_id).setVisible(true);
                 }
             }
             else{
