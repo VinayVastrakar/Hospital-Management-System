@@ -9,7 +9,7 @@ public class ConnectionClass {
     ConnectionClass(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmisDB","root","Balram123@");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmisdb","root","Balram123@");
             stm= con.createStatement();
             
             

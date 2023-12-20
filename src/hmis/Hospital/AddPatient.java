@@ -1,6 +1,7 @@
 
 package hmis.Hospital;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
@@ -12,7 +13,8 @@ public class AddPatient implements ActionListener{
     JFrame f;
     JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16;
     JTextField t1,t2,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14;
-    Choice gen,mar;
+    Choice gen,mar,c2;
+    JDateChooser d;
     JPasswordField t3;
     JButton bt1,bt2;
     Font f1;
@@ -153,9 +155,21 @@ public class AddPatient implements ActionListener{
         l12.setForeground(Color.BLACK);
         l1.add(l12);
         
-        t10 = new JTextField();
-        t10.setBounds(600, 350, 150, 30);
-        l1.add(t10);
+        c2 = new Choice();
+        c2.setFont(f1);
+        c2.add("O+");
+        c2.add("O-");
+        c2.add("A+");
+        c2.add("A-");
+        c2.add("B+");
+        c2.add("B-");
+        c2.add("AB+");
+        c2.add("AB-");
+        c2.setBounds(600, 350, 150, 30);
+        l1.add(c2);
+//        t10 = new JTextField();
+//        t10.setBounds(600, 350, 150, 30);
+//        l1.add(t10);
         
         
         l13= new JLabel("Disease");
@@ -198,9 +212,14 @@ public class AddPatient implements ActionListener{
         l16.setForeground(Color.BLACK);
         l1.add(l16);
         
-        t14 = new JTextField();
-        t14.setBounds(200, 450, 150, 30);
-        l1.add(t14);
+        d= new JDateChooser();
+        d.setFont(new Font("Arial" , Font.BOLD,13));
+        d.setBounds(200, 450, 150, 30);
+        l1.add(d);
+        
+//        t14 = new JTextField();
+//        t14.setBounds(200, 450, 150, 30);
+//        l1.add(t14);
         
         bt1 = new JButton("Submit"); // buttom 1
         bt1.setBackground(Color.green);
@@ -221,7 +240,7 @@ public class AddPatient implements ActionListener{
         
         f.setVisible(true);
         f.setSize(900,600);
-        f.setLocation(210,50);
+        f.setLocation(210,0);
         f.setResizable(false);
     }
     
@@ -237,11 +256,11 @@ public class AddPatient implements ActionListener{
              String maritalStatus = mar.getSelectedItem();
              String city = t8.getText();
              String gender = gen.getSelectedItem();
-             String blood = t10.getText();
+             String blood = c2.getSelectedItem();
              String disease = t11.getText();
              String age = t12.getText();
              String address = t13.getText();
-             String dob = t14.getText();
+             String dob = d.getDateFormatString();
              Random r= new Random();
              String pat_id = ""+Math.abs(r.nextInt()%100000);
              

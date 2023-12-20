@@ -1,6 +1,7 @@
 package hmis.Hospital;
 
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
@@ -13,6 +14,7 @@ public class AddDoctor implements ActionListener{
     JFrame f;
     JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16;
     JTextField t1,t2,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14;
+    JDateChooser d,d1;
     Choice c1,c2,c3;
     Font f1;
     JPasswordField t3;
@@ -81,9 +83,9 @@ public class AddDoctor implements ActionListener{
         l6.setForeground(Color.BLACK);
         l1.add(l6);
         
-        t4 = new JTextField();
-        t4.setBounds(600, 200, 150, 30);
-        l1.add(t4);
+        d = new JDateChooser();
+        d.setBounds(600, 200, 150, 30);
+        l1.add(d);
         
         
         l7= new JLabel("Address");
@@ -196,9 +198,9 @@ public class AddDoctor implements ActionListener{
         l15.setForeground(Color.BLACK);
         l1.add(l15);
         
-        t13 = new JTextField();
-        t13.setBounds(200, 400, 150, 30);
-        l1.add(t13);
+        d1 = new JDateChooser();
+        d1.setBounds(200, 400, 150, 30);
+        l1.add(d1);
         
         
         l16= new JLabel("Spcialization");
@@ -240,7 +242,7 @@ public class AddDoctor implements ActionListener{
         c3.add("Sleep medicine specialist ");
         c3.add("Surgeon");
         c3.add("Urologist");
-        c3.setBounds(200, 450, 150, 30);
+        c3.setBounds(200, 450, 150, 50);
         l1.add(c3);
         
         
@@ -274,7 +276,7 @@ public class AddDoctor implements ActionListener{
              String name = t1.getText();
              String username = t2.getText();
              String password = t3.getText();
-             String dob = t4.getText();
+             String dob = d.getDateFormatString();
              String address = t5.getText();
              String phone = t6.getText();
              String email = t7.getText();
@@ -283,7 +285,7 @@ public class AddDoctor implements ActionListener{
              String blood = c2.getSelectedItem();
              String age = t11.getText();
              String clinic = t12.getText();
-             String jod = t13.getText();
+             String jod = d1.getDateFormatString();
              String splz = t14.getText();
              String avl = "Yes";
              Random r= new Random();

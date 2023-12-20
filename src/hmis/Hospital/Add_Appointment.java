@@ -2,6 +2,7 @@
 package hmis.Hospital;
 
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
@@ -13,8 +14,9 @@ public class Add_Appointment extends JFrame implements ActionListener{
     
     JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16,l17,l18;
     JButton bt,bt1,bt2;
+    JDateChooser t12;
     JPanel p1,p2,p3;
-    JTextField t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14;
+    JTextField t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t13,t14;
     Font f,f1;
     Choice ch,ch1,ch2;
     String q;
@@ -83,7 +85,7 @@ public class Add_Appointment extends JFrame implements ActionListener{
         t9 = new JTextField();
         t10 = new JTextField();
         t11 = new JTextField();
-        t12 = new JTextField();
+        t12 = new JDateChooser();
         
         t1.setEditable(false);
         t2.setEditable(false);
@@ -280,7 +282,7 @@ public class Add_Appointment extends JFrame implements ActionListener{
             String dob = t10.getText();
             String disease = t11.getText();
             String doctor = ch1.getSelectedItem();
-            String app_date = t12.getText();
+            String app_date = t12.getDateFormatString();
             String app_time = ch2.getSelectedItem();
             String app_status = "Open";
             Random r = new Random();
