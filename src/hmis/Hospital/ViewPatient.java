@@ -19,6 +19,7 @@ public class ViewPatient extends JFrame implements ActionListener {
     Font f,f1;
     String q;
     int login_id;
+    String pet_id,doc_id;
     
     ViewPatient(String username,int login_id)
     {
@@ -36,6 +37,7 @@ public class ViewPatient extends JFrame implements ActionListener {
                 q = "Select * from Patient where username='"+username+"'";
             }
             else{
+                
                 q = "Select * from Patient";
             }
             
@@ -82,19 +84,19 @@ public class ViewPatient extends JFrame implements ActionListener {
         
         bt= new JButton("Delete Patient");  // set buttons
         bt1= new JButton("Edit Patient");
-        bt2 = new JButton("Add Prescription");
+//        bt2 = new JButton("Add Prescription");
         
         bt.addActionListener(this); // 
         bt1.addActionListener(this);
-        bt2.addActionListener(this);
+//        bt2.addActionListener(this);
         
         bt.setBackground(Color.black);
         bt1.setBackground(Color.black);
-        bt2.setBackground(Color.black);
+//        bt2.setBackground(Color.black);
         
         bt.setForeground(Color.red);
         bt1.setForeground(Color.yellow);
-        bt2.setForeground(Color.green);
+//        bt2.setForeground(Color.green);
         
            
         tf1 = new JTextField();
@@ -105,12 +107,12 @@ public class ViewPatient extends JFrame implements ActionListener {
         p1.add(l2);
         
         p2 = new JPanel();
-        p2.setLayout(new GridLayout(1,5,10,10));
+        p2.setLayout(new GridLayout(1,4,10,10));
         p2.add(l1);
         p2.add(tf1);
         p2.add(bt);
         p2.add(bt1);
-        p2.add(bt2);
+//        p2.add(bt2);
          
         p3 = new JPanel();
         p3.setLayout(new GridLayout(2,1,10,10));
@@ -163,21 +165,21 @@ public class ViewPatient extends JFrame implements ActionListener {
                  new EditPatient(username).setVisible(true);
              }
         }
-        if(ae.getSource()==bt2){
-            if(login_id==1){
-                if(username.isEmpty()){
-                 JOptionPane.showMessageDialog(null,"Please fill Patient Username !");
-                }
-                else{
-                    setVisible(false);
-                    new View_Prescription(username).setVisible(true);
-                    new Add_Prescription(username,login_id).setVisible(true);
-                }
-            }
-            else{
-                JOptionPane.showMessageDialog(null,"You have not Permission to patient perscribe!");
-            } 
-        }
+//        if(ae.getSource()==bt2){
+//            if(login_id==1){
+//                if(username.isEmpty()){
+//                 JOptionPane.showMessageDialog(null,"Please fill Patient Username !");
+//                }
+//                else{
+//                    setVisible(false);
+//                    new View_Prescription(pet_id,login_id).setVisible(true);
+//                    new Add_Prescription(pet_id,doc_id).setVisible(true);
+//                }
+//            }
+//            else{
+//                JOptionPane.showMessageDialog(null,"You have not Permission to patient perscribe!");
+//            } 
+//        }
     }
         
     

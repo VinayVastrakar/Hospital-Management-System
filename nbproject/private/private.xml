@@ -3,11 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/Login.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/View_Prescription.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/AdminHomePage.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/ReceptionistHomePage.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/View_Appointment.java</file>
             <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/Add_Prescription.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/DoctorHomePage.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/Add_Medicine.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/View_Medicine.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/Login.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/DispensaryHomePage.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/View_Receptionist.java</file>
             <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/Add_Appointment.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/AddPatient.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/Add_Receptionist.java</file>
             <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/ViewPatient.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/PatientHomePage.java</file>
             <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/ViewDoctor.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/Index.java</file>
             <file>file:/C:/Users/HP/OneDrive/Documents/NetBeansProjects/HMIS/src/hmis/Hospital/ConnectionClass.java</file>
         </group>
     </open-files>

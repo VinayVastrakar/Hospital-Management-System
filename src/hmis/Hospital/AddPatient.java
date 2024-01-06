@@ -7,6 +7,7 @@ import java.awt.event.*;
 import java.util.Random;
 import javax.swing.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 public class AddPatient implements ActionListener{
     
@@ -213,6 +214,7 @@ public class AddPatient implements ActionListener{
         l1.add(l16);
         
         d= new JDateChooser();
+        d.setDateFormatString("dd-MM-yyyy");
         d.setFont(new Font("Arial" , Font.BOLD,13));
         d.setBounds(200, 450, 150, 30);
         l1.add(d);
@@ -260,7 +262,12 @@ public class AddPatient implements ActionListener{
              String disease = t11.getText();
              String age = t12.getText();
              String address = t13.getText();
-             String dob = d.getDateFormatString();
+//             String dob = d.getDateFormatString();
+             java.util.Date date = d.getDate();
+             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            String dob = dateFormat.format(date);
+             
+             
              Random r= new Random();
              String pat_id = ""+Math.abs(r.nextInt()%100000);
              

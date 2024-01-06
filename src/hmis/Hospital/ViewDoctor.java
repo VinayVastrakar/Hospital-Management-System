@@ -74,7 +74,7 @@ public class ViewDoctor extends JFrame implements ActionListener  {
             l1.setFont(f1);
             l2.setFont(f1);
 
-            bt= new JButton("Delete Doctor");  // set buttons
+            bt= new JButton("Inactive Doctor");  // set buttons
             bt1= new JButton("Edit Doctor");
 
             bt.addActionListener(this);
@@ -117,11 +117,12 @@ public class ViewDoctor extends JFrame implements ActionListener  {
         String username = tf1.getText();
         if(ae.getSource()==bt){
             try{
-                ConnectionClass obj1 = new ConnectionClass();
-                String q = "delete from doctor where username='"+username +"'";
-                obj1.stm.executeQuery(q);
-                String q1 = "update appointment set appointment_status = 'Cancel' where doctor_username='"+username+"'";
-                obj1.stm.executeQuery(q1);
+//                ConnectionClass obj1 = new ConnectionClass();
+//                String q = "delete from doctor where username='"+username +"'";
+//                obj1.stm.executeQuery(q);
+//                String q1 = "update appointment set appointment_status = 'Cancel' where doctor_username='"+username+"'";
+//                obj1.stm.executeQuery(q1);
+                JOptionPane.showMessageDialog(null,"This Button is not Available");
                 setVisible(false);
             }
             catch(Exception e){

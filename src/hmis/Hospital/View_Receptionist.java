@@ -140,7 +140,7 @@ public class View_Receptionist extends JFrame implements ActionListener{
         }
     }
     
-//    public static void main(String[] args) {
-//        new View_Receptionist(2).setVisible(true);
-//    }
+    public static void main(String[] args) {
+        new View_Receptionist(2).setVisible(true);
+    }
 }

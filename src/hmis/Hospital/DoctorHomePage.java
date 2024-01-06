@@ -12,7 +12,7 @@ public class DoctorHomePage extends JFrame implements ActionListener {
     private int login_id ;
     String username;
     
-    DoctorHomePage(String doctorName, String doctor_id,int login_id,String username){
+    DoctorHomePage(String doctor_id,int login_id,String username){
         super("Doctor Home Page");
         setLocation(0,0);
         setSize(1500,720);
@@ -56,7 +56,7 @@ public class DoctorHomePage extends JFrame implements ActionListener {
 
         men4.add(ment8);
         
-        JMenu men5 = new JMenu("Hii, Doctor("+doctorName+")");
+        JMenu men5 = new JMenu("Hii, Doctor("+username+")");
         JMenuItem ment9 = new JMenuItem("My Profile");
         JMenuItem ment10 = new JMenuItem("Change Password");
         men5.add(ment9);

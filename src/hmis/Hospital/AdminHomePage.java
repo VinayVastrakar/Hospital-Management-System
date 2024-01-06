@@ -158,7 +158,7 @@ public class AdminHomePage extends JFrame implements ActionListener {
              new View_Receptionist(login_id).setVisible(true);
          }
          else if(comnd.equals("Add Appiontment")){
-             new Add_Appointment().setVisible(true);
+             new Add_Appointment(login_id,username).setVisible(true);
          }
          else if(comnd.equals("View Appiontment")){
              new View_Appointment(username,login_id).setVisible(true);

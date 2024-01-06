@@ -143,7 +143,7 @@ public class ReceptionistHomePage extends JFrame implements ActionListener {
              new View_Appointment(username,login_id).setVisible(true);
          }
          else if(comnd.equals("Add Appiontment")){
-             new Add_Appointment().setVisible(true);
+             new Add_Appointment(login_id,recepId).setVisible(true);
          }
          else if(comnd.equals("My Profile")){
              new CheckMyProfile(recepId,login_id);

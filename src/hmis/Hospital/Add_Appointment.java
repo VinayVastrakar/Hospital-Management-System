@@ -1,7 +1,7 @@
 
 package hmis.Hospital;
 
-
+import java.text.SimpleDateFormat;  
 import com.toedter.calendar.JDateChooser;
 import java.awt.*;
 import java.awt.event.*;
@@ -20,14 +20,16 @@ public class Add_Appointment extends JFrame implements ActionListener{
     Font f,f1;
     Choice ch,ch1,ch2;
     String q;
+    String admin_id;
     
     
     
-    Add_Appointment(){
+    Add_Appointment(int login_id,String admin_id){
         
         super("Add Appointment");
         setLocation(130,0);
         setSize(1000,690);
+        this.admin_id=admin_id;
         
         f= new Font("Arial",Font.BOLD,25);
         f1 = new Font("Arial", Font.BOLD,18);
@@ -43,18 +45,34 @@ public class Add_Appointment extends JFrame implements ActionListener{
         ch2.add("2PM");
         ch2.add("3PM");
         
-        try{
-            ConnectionClass obj = new ConnectionClass();
-            q = "Select username from patient";
-            ResultSet rest = obj.stm.executeQuery(q);
-            
-            while(rest.next()){
-                ch.add(rest.getString("username"));
+        if(login_id==3){
+            try{
+                    ConnectionClass obj = new ConnectionClass();
+                    q = "Select username from patient where username='"+admin_id+"'";
+                    ResultSet rest = obj.stm.executeQuery(q);
+
+                    while(rest.next()){
+                        ch.add(rest.getString("username"));
+                    }
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+        }else{
+            try{
+                ConnectionClass obj = new ConnectionClass();
+                q = "Select username from patient";
+                ResultSet rest = obj.stm.executeQuery(q);
+
+                while(rest.next()){
+                    ch.add(rest.getString("username"));
+                }
+            }
+            catch(Exception e){
+                e.printStackTrace();
             }
         }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        
         
         l1 = new JLabel("Add Appointment");
         l2 = new JLabel("Username");
@@ -86,6 +104,7 @@ public class Add_Appointment extends JFrame implements ActionListener{
         t10 = new JTextField();
         t11 = new JTextField();
         t12 = new JDateChooser();
+        t12.setDateFormatString("dd-MM-yyyy");
         
         t1.setEditable(false);
         t2.setEditable(false);
@@ -240,7 +259,7 @@ public class Add_Appointment extends JFrame implements ActionListener{
                         t8.setText(rest1.getString("blood"));
                         t9.setText(rest1.getString("age"));
                         t10.setText(rest1.getString("dob"));
-                        t11.setText(rest1.getString("disease"));
+//                        t11.setText(rest1.getString("disease"));
                         
                         
                     }
@@ -269,32 +288,23 @@ public class Add_Appointment extends JFrame implements ActionListener{
             }
         }
         if(ae.getSource()==bt){
-            String username = ch.getSelectedItem();
-            String name = t1.getText();
-            String email = t2.getText();
-            String fname = t3.getText();
-            String phone = t4.getText();
-            String mstatus = t5.getText();
-            String city = t6.getText();
-            String gender = t7.getText();
-            String blood = t8.getText();
-            String age = t9.getText();
-            String dob = t10.getText();
-            String disease = t11.getText();
-            String doctor = ch1.getSelectedItem();
-            String app_date = t12.getDateFormatString();
-            String app_time = ch2.getSelectedItem();
-            String app_status = "Open";
+            String patient = ch.getSelectedItem();
+            
+            String doctor = ch1.getSelectedItem();       
+            java.util.Date date = t12.getDate();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            String formattedDate = dateFormat.format(date);
+            
+            String time = ch2.getSelectedItem();
+            String status = "Open";
             Random r = new Random();
             String app_id = ""+Math.abs(r.nextInt()%100000);
             
             try{
                 ConnectionClass obj3 = new ConnectionClass();
-                String q3= "insert into appointment(app_id,username,name,email,father_name,phone,"
-                        + "marital_status,city,gender,blood,age,dob,disease,doctor_username, appointment_date,"
-                        + "appointment_time,appointment_status) values('"+app_id+"','"+username+"','"+name+"','"+
-                        email+"','"+fname+"','"+phone+"','"+mstatus+"','"+city+"','"+gender+"','"+blood+"','"+age+
-                        "','"+dob+"','"+disease+"','"+doctor+"','"+app_date+"','"+app_time+"','"+app_status+"')";
+                String q3= "insert into appointment(app_id,date,time, status,"
+                        + "patient_id,doctor_id) values('"+app_id+"','"+formattedDate+"','"+
+                        time+"','"+status+"','"+patient+"','"+doctor+"')";
                 int aa = obj3.stm.executeUpdate(q3);
                 
                 if(aa==1){
@@ -314,6 +324,6 @@ public class Add_Appointment extends JFrame implements ActionListener{
     }
     
     public static void main(String[] args) {
-        new Add_Appointment().setVisible(true);
+        new Add_Appointment(4,"Amit").setVisible(true);
     }
 }

@@ -4,8 +4,12 @@
  */
 package hmis.Hospital;
 
+import com.mysql.cj.protocol.Resultset;
+import com.toedter.calendar.JDateChooser;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.ResultSet;
+import java.util.Date;
 import java.util.Random;
 import javax.swing.*;
 
@@ -14,17 +18,18 @@ public class Add_Prescription extends JFrame implements ActionListener{
     JFrame f;
     JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16;
     JTextField t1,t2,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14;
+    JDateChooser d;
     Choice c1,c2,c3;
-    
     Font f1;
-    JPasswordField t3;
-    JButton bt1,bt2;
+    public JButton bt1,bt2;
+    String pat_name,doc_name , app_id, med_id, time, date;
     
-    Add_Prescription(){
+    Add_Prescription(String app_id){
         
-        f = new JFrame("Add Doctor");
+        f = new JFrame("Add Prescription");
         f.setBackground(Color.WHITE);
         f.setLayout(null);
+        this.app_id = app_id;
         
         f1= new Font("Arial" , Font.CENTER_BASELINE,18); 
         
@@ -33,7 +38,7 @@ public class Add_Prescription extends JFrame implements ActionListener{
         l1.setLayout(null);
         
         ImageIcon img = new ImageIcon(ClassLoader.getSystemResource("hmis\\Hospital\\Images\\AddDoctor.jpg"));
-        Image i = img.getImage().getScaledInstance(1000, 150, Image.SCALE_SMOOTH);
+        Image i = img.getImage().getScaledInstance(1000, 130, Image.SCALE_SMOOTH);
         ImageIcon img1 = new ImageIcon(i);
         l1.setIcon(img1);
         
@@ -43,222 +48,74 @@ public class Add_Prescription extends JFrame implements ActionListener{
         l2.setForeground(Color.BLACK);
         l1.add(l2);
         
-        t1 = new JTextField();
-        t1.setBounds(20, 50, 150, 30);
-        l1.add(t1);
+        c1 = new Choice();
+        String q="";
+        try{
+            ConnectionClass obj = new ConnectionClass();
+            q = "Select name from medicine";
+            ResultSet rest = obj.stm.executeQuery(q);
+            
+            while(rest.next()){
+                c1.add(rest.getString("name"));
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        
+        c1.setBounds(20, 50, 130, 50);
+        l1.add(c1);
         
         
         l3= new JLabel("Advice");
-        l3.setBounds(200, 0, 150, 50);
+        l3.setBounds(210, 0, 100, 50);
         l3.setFont(new Font("Arial" , Font.BOLD,18));
         l3.setForeground(Color.BLACK);
         l1.add(l3);
         
-        
-        
-        
-        l4= new JLabel("Username");
-        l4.setBackground(Color.white);
-        l4.setBounds(450, 150, 200, 30);
-        l4.setFont(new Font("Arial" , Font.BOLD,20));
-        l4.setForeground(Color.BLACK);
-        l1.add(l4);
-        
-        t2 = new JTextField();
-        t2.setBounds(600, 150, 150, 30);
-        l1.add(t2);
-        
-        
-        l5= new JLabel("Password");
-        l5.setBounds(50, 200, 100, 30);
-        l5.setFont(new Font("Arial" , Font.BOLD,20));
-        l5.setForeground(Color.BLACK);
-        l1.add(l5);
-        
-        t3 = new JPasswordField();
-        t3.setBounds(200, 200, 150, 30);
-        l1.add(t3);
-        
-        
-        l6= new JLabel("Date Of Birth");
-        l6.setBounds(450, 200, 200, 30);
-        l6.setFont(new Font("Arial" , Font.BOLD,20));
-        l6.setForeground(Color.BLACK);
-        l1.add(l6);
-        
-        t4 = new JTextField();
-        t4.setBounds(600, 200, 150, 30);
-        l1.add(t4);
-        
-        
-        l7= new JLabel("Address");
-        l7.setBounds(50, 250, 100, 30);
-        l7.setFont(new Font("Arial" , Font.BOLD,20));
-        l7.setForeground(Color.BLACK);
-        l1.add(l7);
-        
-        t5 = new JTextField();
-        t5.setBounds(200, 250, 150, 30);
-        l1.add(t5);
-        
-        
-        l8= new JLabel("Phone");
-        l8.setBounds(450, 250, 100, 30);
-        l8.setFont(new Font("Arial" , Font.BOLD,20));
-        l8.setForeground(Color.BLACK);
-        l1.add(l8);
-        
-        t6 = new JTextField();
-        t6.setBounds(600, 250, 150, 30);
-        l1.add(t6);
-        
-        
-        l9= new JLabel("Email Id");
-        l9.setBounds(50, 300, 100, 30);
-        l9.setFont(new Font("Arial" , Font.BOLD,20));
-        l9.setForeground(Color.BLACK);
-        l1.add(l9);
-        
-        t7 = new JTextField();
-        t7.setBounds(200, 300, 150, 30);
-        l1.add(t7);
-        
-        
-        l10= new JLabel("City");
-        l10.setBounds(450, 300, 100, 30);
-        l10.setFont(new Font("Arial" , Font.BOLD,20));
-        l10.setForeground(Color.BLACK);
-        l1.add(l10);
-        
-        t8 = new JTextField();
-        t8.setBounds(600, 300, 150, 30);
-        l1.add(t8);
-        
-        
-        l11= new JLabel("Gender");
-        l11.setBounds(50, 350, 100, 30);
-        l11.setFont(new Font("Arial" , Font.BOLD,20));
-        l11.setForeground(Color.BLACK);
-        l1.add(l11);
-        
-        
-        
-        c1 = new Choice();
-        c1.setFont(f1);
-        c1.add("Male");
-        c1.add("Female");
-        c1.add("Other");
-        c1.setBounds(200, 350, 150, 30);
-        l1.add(c1);
-        
-        
-        l12= new JLabel("Blood Group");
-        l12.setBounds(450, 350, 140, 30);
-        l12.setFont(new Font("Arial" , Font.BOLD,20));
-        l12.setForeground(Color.BLACK);
-        l1.add(l12);
-        
         c2 = new Choice();
-        c2.setFont(f1);
-        c2.add("O+");
-        c2.add("O-");
-        c2.add("A+");
-        c2.add("A-");
-        c2.add("B+");
-        c2.add("B-");
-        c2.add("AB+");
-        c2.add("AB-");
-        c2.setBounds(600, 350, 150, 30);
+        c2.add("Before meal");
+        c2.add("After meal");
+        c2.setBounds(190, 50, 120, 50);
         l1.add(c2);
         
         
-        l13= new JLabel("Age");
-        l13.setBounds(450, 400, 150, 30);
-        l13.setFont(new Font("Arial" , Font.BOLD,20));
-        l12.setForeground(Color.BLACK);
-        l12.setBackground(Color.white);
-        l1.add(l13);
-        
-        t11 = new JTextField();
-        t11.setBounds(600, 400, 150, 30);
-        l1.add(t11);
-        
-        
-        l14= new JLabel("Clinic Number");
-        l14.setBounds(450, 450, 150, 30);
-        l14.setFont(new Font("Arial" , Font.BOLD,20));
-        l14.setForeground(Color.BLACK);
-        l1.add(l14);
-        
-        t12 = new JTextField();
-        t12.setBounds(600, 450, 150, 30);
-        l1.add(t12);
-        
-        
-        l15= new JLabel("Joining Date");
-        l15.setBounds(50, 400, 120, 30);
-        l15.setFont(new Font("Arial" , Font.BOLD,20));
-        l15.setForeground(Color.BLACK);
-        l1.add(l15);
-        
-        t13 = new JTextField();
-        t13.setBounds(200, 400, 150, 30);
-        l1.add(t13);
-        
-        
-        l16= new JLabel("Spcialization");
-        l16.setBounds(50, 450, 140, 30);
-        l16.setFont(new Font("Arial" , Font.BOLD,20));
-        l16.setForeground(Color.BLACK);
-        l1.add(l16);
+        l4= new JLabel("Frequencey");
+        l4.setBounds(360, 0, 130, 50);
+        l4.setFont(new Font("Arial" , Font.BOLD,18));
+        l4.setForeground(Color.BLACK);
+        l1.add(l4);
         
         c3 = new Choice();
-        c3.setFont(new Font("Arial" , Font.BOLD,15));
-        c3.add("Allergist/immunologist");
-        c3.add("Anesthesiologist");
-        c3.add("Cardiologist");
-        c3.add("Dermatologist");
-        c3.add("Endocrinologist");
-        c3.add("Family physician");
-        c3.add("Gastroenterologist");
-        c3.add("Geneticist");
-        c3.add("Hematologist");
-        c3.add("Infectious disease physician");
-        c3.add("Internal Medicine");
-        c3.add("Nephrologist");
-        c3.add("Neurologist");
-        c3.add("Obstetrician/gynecologist ");
-        c3.add("Oncologist");
-        c3.add("Ophthalmologist");
-        c3.add("Orthopedist");
-        c3.add("Otolaryngologist");
-        c3.add("Osteopath");
-        c3.add("Pathologist");
-        c3.add("Pediatrician");
-        c3.add("Physician executive");
-        c3.add("Plastic surgeon");
-        c3.add("Podiatrist");
-        c3.add("Psychiatrist");
-        c3.add("Pulmonologist");
-        c3.add("Radiologist");
-        c3.add("Rheumatologist");
-        c3.add("Sleep medicine specialist ");
-        c3.add("Surgeon");
-        c3.add("Urologist");
-        c3.setBounds(200, 450, 150, 30);
+        c3.add("OID");
+        c3.add("BID");
+        c3.add("TID");
+        c3.add("QID");
+        c3.setBounds(355, 50, 120, 50);
         l1.add(c3);
         
         
-        bt1 = new JButton("Submit"); // buttom 1
-        bt1.setBackground(Color.green);
+        l5= new JLabel("Quantity");
+        l5.setBounds(510, 0, 130, 50);
+        l5.setFont(new Font("Arial" , Font.BOLD,18));
+        l5.setForeground(Color.BLACK);
+        l1.add(l5);
+        
+        t2 = new JTextField();
+        t2.setBounds(510, 50, 100, 20);
+        l1.add(t2);
+        
+        bt1 = new JButton("Add"); // buttom 1
+        bt1.setBackground(Color.blue);
         bt1.setForeground(Color.white);
-        bt1.setBounds(250,500,150,40);
+        bt1.setBounds(650,30,120,30);
         l1.add(bt1);
         
         bt2 = new JButton("Cancle"); // button 2
         bt2.setBackground(Color.RED);
         bt2.setForeground(Color.white);
-        bt2.setBounds(450,500,150,40);
+        bt2.setBounds(820,30,120,30);
         l1.add(bt2);
         
         bt1.addActionListener(this); // add action
@@ -267,7 +124,7 @@ public class Add_Prescription extends JFrame implements ActionListener{
         f.add(l1);
         
         f.setVisible(true);
-        f.setSize(1000,150);
+        f.setSize(1000,130);
         f.setLocation(150,400);
         f.setResizable(false);
         
@@ -275,32 +132,56 @@ public class Add_Prescription extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae){
         
         if(ae.getSource()==bt1){
-             String name = t1.getText();
-             String username = t2.getText();
-             String password = t3.getText();
-             String dob = t4.getText();
-             String address = t5.getText();
-             String phone = t6.getText();
-             String email = t7.getText();
-             String city = t8.getText();
-             String gender = c1.getSelectedItem();
-             String blood = c2.getSelectedItem();
-             String age = t11.getText();
-             String clinic = t12.getText();
-             String jod = t13.getText();
-             String splz = t14.getText();
-             String avl = "Yes";
-             Random r= new Random();
-             String doc_l1 = ""+Math.abs(r.nextInt()%100000);
-             
+             String med_name = c1.getSelectedItem();
              try{
                  ConnectionClass obj = new ConnectionClass();
-                 String q = "insert into doctor values('"+doc_l1+"','"+name+"','"+username+"','"+password+"','"
-                         +dob+"','"+address+"','"+phone+"','"+email+"','"+city+"','"+gender+"','"+blood+"','"+age
-                         +"','"+clinic+"','"+jod+"','"+splz+"','"+avl+"')";
+                 String q = "select med_id from medicine where name='"+med_name+"'";
+                 ResultSet rest = obj.stm.executeQuery(q);
+              
+                   if(rest.next())
+                   {
+                       med_id = rest.getString("med_id");
+                   }
+
+             }
+             catch(Exception e){
+                 e.printStackTrace();
+             }
+             String advice = c2.getSelectedItem();
+             String freq = c3.getSelectedItem();
+             String day = t2.getText();
+//             String date = new Date().toString();
+             Random r= new Random();
+             String pre_hd = ""+Math.abs(r.nextInt()%10000);
+             String pre_dd = ""+Math.abs(r.nextInt()%10000);
+             
+             try{
+                ConnectionClass obj = new ConnectionClass();
+                String q2 = "Select * from appointment where app_id='"+app_id+"'";
+                ResultSet rest = obj.stm.executeQuery(q2);
+                while(rest.next())
+                {
+                    pat_name = rest.getString("patient_id");
+                    doc_name = rest.getString("doctor_id");
+                    time = rest.getString("time");
+                    date = rest.getString("date");
+                }
+                
+                String q = "insert into prescription_hd(id_hd,date,time,status,appointment_id,patient,doctor) "
+                         + "values('"+pre_hd+"','"+date+"','"+time+"','"+"P"+"','"+app_id+"','"
+                         +pat_name+"','"+doc_name+"')";
+                
+                
+                 
+                 String q1 = "insert into prescription_dd(pre_dd_id,med_id,advice,frequency,quantity,pre_hd) values('"+pre_dd+"','"+med_id+"','"+advice+"','"
+                         +freq+"','"+day+"','"+pre_hd+"')";
                  obj.stm.executeUpdate(q);
-                 JOptionPane.showMessageDialog(null, "Details Successfull Inserted");
-                 f.setVisible(false);
+                 obj.stm.executeUpdate(q1);
+                 JOptionPane.showMessageDialog(null, "Prescription Added");
+                 
+                 new View_Prescription(1,app_id).setVisible(true);
+//               f.setVisible(false);
+//               f.setVisible(true);
              }
              catch(Exception e){
                  e.printStackTrace();
@@ -312,6 +193,6 @@ public class Add_Prescription extends JFrame implements ActionListener{
          }
     }
     public static void main(String[] args) {
-        new Add_Prescription();
+        new Add_Prescription("2662").setVisible(true);
     }
 }

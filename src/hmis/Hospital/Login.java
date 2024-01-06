@@ -57,13 +57,13 @@ public class Login extends JFrame implements ActionListener {
         l2.setForeground(Color.BLACK);
         l1.add(l2);
         
-        l3 = new JLabel("Username:  ");
+        l3 = new JLabel("Username:");
         l3.setBounds(130, 120, 150, 30);
         l3.setFont(new Font("Arial", Font.BOLD, 20));
         l3.setForeground(Color.BLACK);
         l1.add(l3);
         
-        l4 = new JLabel("Password:  ");
+        l4 = new JLabel("Password:");
         l4.setBounds(130, 170, 150, 30);
         l4.setFont(new Font("Arial", Font.BOLD, 20));
         l4.setForeground(Color.BLACK);
@@ -110,12 +110,12 @@ public class Login extends JFrame implements ActionListener {
                     rs = obj.stm.executeQuery(q);
                     
                     if(rs.next()){
-                        String doctorName = rs.getString("name");
+//                        String doctorName = rs.getString("name");
                         String doctor_id = rs.getString("doc_id");
                         String doctor_username = rs.getString("username");
 
 //                        System.out.println("Doctor login");
-                        new DoctorHomePage(doctorName,doctor_id,login_id,doctor_username).setVisible(true);
+                        new DoctorHomePage(doctor_id,login_id,doctor_username).setVisible(true);
                         f.setVisible(false);
                     }else{
                         JOptionPane.showMessageDialog(null, "You have entered wrong Username and Password");
