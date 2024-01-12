@@ -1,18 +1,21 @@
 
 package hmis.Hospital;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 import javax.swing.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 public class Add_Medicine implements ActionListener{
     
     JFrame f;
     JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9;
-    JTextField t1,t2,t3,t4,t5,t6,t7;
-    Choice gen,mar;
+    JTextField t1,t2,t3,t4,t5,t7;
+    JDateChooser t6; 
+    Choice type,mar;
     JButton bt1,bt2;
     Font f1;
     
@@ -77,9 +80,19 @@ public class Add_Medicine implements ActionListener{
         l7.setForeground(Color.BLACK);
         l1.add(l7);
         
-        t5 = new JTextField();
-        t5.setBounds(200, 250, 150, 30);
-        l1.add(t5);
+        type = new Choice();
+        type.setFont(new Font("Arial" , Font.BOLD,17));
+        type.setBounds(200, 255, 150, 50);
+        type.add("Tablet");
+        type.add("Syrup");
+        type.add("Injection");
+        type.add("Powder");
+        type.add("Capsule");
+        type.add("Cream");
+        type.add("Drops");
+        type.add("Inhalers");
+        
+        l1.add(type);
         
         
         l8= new JLabel("Expiry Date");
@@ -88,7 +101,12 @@ public class Add_Medicine implements ActionListener{
         l8.setForeground(Color.BLACK);
         l1.add(l8);
         
-        t6 = new JTextField();
+        t6 = new JDateChooser();
+        t6.setDateFormatString("dd-MM-yyyy");
+        
+//        java.util.Date date = t6.getDate();
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+//            String formattedDate = dateFormat.format(date);
         t6.setBounds(600, 250, 150, 30);
         l1.add(t6);
         
@@ -133,15 +151,18 @@ public class Add_Medicine implements ActionListener{
              String name = t1.getText();
              String drug_code = t3.getText();
              String quantity = t4.getText();
-             String drug_type = t5.getText();
-             String expiry_date = t6.getText();
+             String drug_type = type.getSelectedItem();
+             
+             java.util.Date date = t6.getDate();
+             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+             String expiry_date = dateFormat.format(date);
              String unit_rate = t7.getText();
-             Random r= new Random();
-             String med_id = ""+Math.abs(r.nextInt()%100000);
+//             Random r= new Random();
+//             String med_id = ""+Math.abs(r.nextInt()%100000);
              
              try{
                  ConnectionClass obj = new ConnectionClass();
-                 String q = "insert into medicine values('"+med_id+"','"+name+"','"+drug_code+"','"+quantity+"','"
+                 String q = "insert into medicine(name,drug_code,quantity, drug_type,expiry_date,unit_rate) values('"+name+"','"+drug_code+"','"+quantity+"','"
                          +drug_type+"','"+expiry_date+"','"+unit_rate+"')";
                  
                  obj.stm.executeUpdate(q);

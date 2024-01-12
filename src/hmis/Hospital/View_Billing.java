@@ -7,11 +7,11 @@ import javax.swing.*;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 
-public class Make_Billing extends JFrame implements ActionListener {
+public class View_Billing extends JFrame implements ActionListener {
  
     String []x={"Sr. n","PVMS No","Nomenculture","Expiry Date","Quantity","MRP","Amount"};
     
-    JButton bt,bt1,bt2;
+//    JButton bt,bt1,bt2;
     String y[][]=new String[30][7];
     int i=0,j=0;
     JTable t;
@@ -24,16 +24,16 @@ public class Make_Billing extends JFrame implements ActionListener {
     double MRP,Amount,Total;
     String app_id,pet_name,pat_user,doc_name ,med_id,pre_id,date;
     
-    Make_Billing(String app_id,String admin_id)
+    View_Billing(String app_id)
     {
         
         super("Billing Information");
         setSize(1100,600);
         setLocation(50,1);
         this.app_id= app_id;
-        Date d = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        this.date = dateFormat.format(d);
+//        Date d = new Date();
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+//        this.date = dateFormat.format(d);
         
         f = new Font("MS UI Gothic", Font.BOLD,15);
         f2 = new Font("Lucida Fax", Font.BOLD,20);
@@ -55,7 +55,6 @@ public class Make_Billing extends JFrame implements ActionListener {
             ResultSet rest = obj.stm.executeQuery(q);
 //            ResultSet rest1;
             ConnectionClass obj1 = new ConnectionClass();
-            ConnectionClass obj2 = new ConnectionClass();
             
 //            id_hd,Username,name,expiry_date,quantity,unit_rate
             while(rest.next()){
@@ -68,15 +67,6 @@ public class Make_Billing extends JFrame implements ActionListener {
                 pat_user = rest.getString("pat_user");
                 
                 
-                String q1 = "INSERT INTO med_issued(`med_id`, `issue_date`, `app_id`, `pre_id`, `issue_by`, `patient`,`pre_qty`,`issue_qty`)"
-                + " VALUES ('"+med_id+"', '"+date+"', '"+app_id+"', '"+pre_id+"', '"+admin_id+"', '"+pat_user+"','"+rest.getString("qty")+"','"+rest.getString("qty")+"')";
-                
-                String q2 = "UPDATE prescription_hd SET issued_by = '"+admin_id+"' WHERE id_hd = '"+pre_id+"';";
-                
-//                System.out.println(q1);
-                obj1.stm.executeUpdate(q1);
-                obj2.stm.executeUpdate(q2);
-//                System.out.println(q1);
             } 
             String q2 = "select hmisdb.med_issued.pre_id as pre_id, hmisdb.medicine.name as med,"
                     + "hmisdb.medicine.expiry_date as exp, hmisdb.med_issued.issue_qty as qty, "
@@ -113,8 +103,9 @@ public class Make_Billing extends JFrame implements ActionListener {
             t.setForeground(Color.WHITE);
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Bill Has Been Already Generated");
+            JOptionPane.showMessageDialog(null, "Bill Has Not Generated");
             e.printStackTrace();
+            setVisible(false);
         }
         JScrollPane sp =new JScrollPane(t);
         f1= new Font("Lucida Fax", Font.BOLD,25);
@@ -131,13 +122,14 @@ public class Make_Billing extends JFrame implements ActionListener {
         p5.add(l5);
         
         
-           // patient information
+        // patient information
         l3 = new JLabel("Patient- "+pet_name);
         l3.setForeground(Color.GRAY);
         l3.setFont(f2);
         l4 = new JLabel("Invoice no. "+app_id); // patient name
         l4.setForeground(Color.GRAY);
         l4.setFont(f2);
+        
         // doctor
         l6 = new JLabel("Doctor- "+doc_name);
         l6.setForeground(Color.GRAY);
@@ -166,57 +158,57 @@ public class Make_Billing extends JFrame implements ActionListener {
         
         
         
-        l1= new JLabel("Medicine id");
-        l2= new JLabel("Delete Any Medicine");
+//        l1= new JLabel("Medicine id");
+//        l2= new JLabel("Delete Any Medicine");
         
-        l1.setForeground(Color.GRAY);
-        l2.setForeground(Color.YELLOW);
-        l2.setHorizontalAlignment(JLabel.CENTER);
+//        l1.setForeground(Color.GRAY);
+//        l2.setForeground(Color.YELLOW);
+//        l2.setHorizontalAlignment(JLabel.CENTER);
+//        
+//        l1.setFont(f1);
+//        l2.setFont(f1);
         
-        l1.setFont(f1);
-        l2.setFont(f1);
-        
-        bt= new JButton("Delete");  // set buttons
-        bt1= new JButton("Issue medicine");
-//        bt2 = new JButton("Add Prescription");
-        
-        bt.addActionListener(this); // 
-        bt1.addActionListener(this);
-//        bt2.addActionListener(this);
-        
-        bt.setBackground(Color.black);
-        bt1.setBackground(Color.black);
-//        bt2.setBackground(Color.black);
-        
-        bt.setForeground(Color.red);
-        bt1.setForeground(Color.green);
+//        bt= new JButton("Delete");  // set buttons
+//        bt1= new JButton("Issue medicine");
+////        bt2 = new JButton("Add Prescription");
+//        
+//        bt.addActionListener(this); // 
+//        bt1.addActionListener(this);
+////        bt2.addActionListener(this);
+//        
+//        bt.setBackground(Color.black);
+//        bt1.setBackground(Color.black);
+////        bt2.setBackground(Color.black);
+//        
+//        bt.setForeground(Color.red);
+//        bt1.setForeground(Color.green);
 //        bt2.setForeground(Color.green);
         
            
-        tf1 = new JTextField();
-        tf1.setFont(f);
+//        tf1 = new JTextField();
+//        tf1.setFont(f);
         
-        p1 = new JPanel();
-        p1.setLayout(new GridLayout(1,1,0,10));
-        p1.add(l2);
+//        p1 = new JPanel();
+//        p1.setLayout(new GridLayout(1,1,0,10));
+//        p1.add(l2);
         
-        p2 = new JPanel();
-        p2.setLayout(new GridLayout(1,4,10,10));
-        p2.add(l1);
-        p2.add(tf1);
-        p2.add(bt);
-        p2.add(bt1);
+//        p2 = new JPanel();
+//        p2.setLayout(new GridLayout(1,4,10,10));
+//        p2.add(l1);
+//        p2.add(tf1);
+//        p2.add(bt);
+//        p2.add(bt1);
 //        p2.add(bt2);
          
-        p3 = new JPanel();
-        p3.setLayout(new GridLayout(2,1,10,10));
-        p3.add(p1);
-        p3.add(p2);
+//        p3 = new JPanel();
+//        p3.setLayout(new GridLayout(2,1,10,10));
+//        p3.add(p1);
+//        p3.add(p2);
         
-        p1.setBackground(Color.black);
-        p2.setBackground(Color.black);
-        p3.setBackground(Color.black);
-        add(p3,"South");
+//        p1.setBackground(Color.black);
+//        p2.setBackground(Color.black);
+//        p3.setBackground(Color.black);
+//        add(p3,"South");
         
         add(sp);
     }
@@ -224,53 +216,53 @@ public class Make_Billing extends JFrame implements ActionListener {
     
     
     public void actionPerformed(ActionEvent ae){
-         String username = tf1.getText();
-        if(ae.getSource()==bt){
-                if(username.isEmpty()){
-                JOptionPane.showMessageDialog(null,"Please fill Patient Username !");
-                }
-                else{
-                    try{
-                    ConnectionClass obj1 = new ConnectionClass();
-                    String q = "delete from patient where username='"+username +"'";
-                    obj1.stm.executeUpdate(q);
-    //                String q1 = "update appointment set appointment_status = 'Cancel' where patient_username='"+username+"'";
-    //                obj1.stm.executeUpdate(q1);
-                    setVisible(false);
-                    }
-                    catch(Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            
-        }
-        if(ae.getSource()==bt1){
-            
-            
-            ConnectionClass obj = new ConnectionClass();
-            String q = "insert into payment_detail(`patient_id`,`appointment_id`,`date`,`amount`) values"
-                    + "('"+pat_user+"','"+app_id+"','"+date+"','"+Total+"')";
-            String q1 = "update hmisdb.prescription_hd "
-                    + "set status = 'C' "
-                    + "where appointment_id= '"+app_id+"'";
-            try{
-//                System.out.print(q);
-                obj.stm.executeUpdate(q);
-                obj.stm.executeUpdate(q1);
-                JOptionPane.showMessageDialog(null,"Medicines are issued");
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Some Issue is come on make billing");
-                e.printStackTrace();
-            }
-            
-            
-            setVisible(false);
-            
-        }
+//         String username = tf1.getText();
+//        if(ae.getSource()==bt){
+//                if(username.isEmpty()){
+//                JOptionPane.showMessageDialog(null,"Please fill Patient Username !");
+//                }
+//                else{
+//                    try{
+//                    ConnectionClass obj1 = new ConnectionClass();
+//                    String q = "delete from patient where username='"+username +"'";
+//                    obj1.stm.executeUpdate(q);
+//    //                String q1 = "update appointment set appointment_status = 'Cancel' where patient_username='"+username+"'";
+//    //                obj1.stm.executeUpdate(q1);
+//                    setVisible(false);
+//                    }
+//                    catch(Exception e){
+//                        e.printStackTrace();
+//                    }
+//                }
+//            
+//        }
+//        if(ae.getSource()==bt1){
+//            
+//            
+//            ConnectionClass obj = new ConnectionClass();
+//            String q = "insert into payment_detail(`patient_id`,`appointment_id`,`date`,`amount`) values"
+//                    + "('"+pat_user+"','"+app_id+"','"+date+"','"+Total+"')";
+//            String q1 = "update hmisdb.prescription_hd "
+//                    + "set status = 'C' "
+//                    + "where appointment_id= '"+app_id+"'";
+//            try{
+////                System.out.print(q);
+//                obj.stm.executeUpdate(q);
+//                obj.stm.executeUpdate(q1);
+//                JOptionPane.showMessageDialog(null,"Medicines are issued");
+//            }catch(Exception e){
+//                JOptionPane.showMessageDialog(null,"Some Issue is come on make billing");
+//                e.printStackTrace();
+//            }
+//            
+//            
+//            setVisible(false);
+//            
+//        }
     }
         
     
     public static void main(String[] args) {
-        new Make_Billing("91461","Sippu").setVisible(true);
+        new View_Billing("1").setVisible(true);
     }
 }

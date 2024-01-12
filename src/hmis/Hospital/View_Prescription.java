@@ -63,6 +63,10 @@ public class View_Prescription extends JFrame implements ActionListener {
                 y[i][j++] = rest.getString("status");
                 i++;
                 j=0;
+                
+                
+                
+                
             }
             t= new JTable(y,x);
             t.setFont(f);
@@ -148,7 +152,7 @@ public class View_Prescription extends JFrame implements ActionListener {
             
             System.out.println("line no --> 149");
             ResultSet rest = obj.stm.executeQuery(q);
-            System.out.println("line no --> 151");
+            System.out.println("line no --> 151 "+q);
 
             DefaultTableModel model = new DefaultTableModel(x, 0); // Create a new model
 
@@ -162,7 +166,8 @@ public class View_Prescription extends JFrame implements ActionListener {
                         rest.getString("freq"),
                         rest.getString("quantity"),
                         rest.getString("date"),
-                        rest.getString("doctor")
+                        rest.getString("doctor"),
+                        rest.getString("status")
                 });
             }
 
@@ -178,7 +183,7 @@ public class View_Prescription extends JFrame implements ActionListener {
         JScrollPane sp =new JScrollPane(t);
         f1= new Font("Lucida Fax", Font.BOLD,25);
         l1= new JLabel("Prescription Id");
-        l2= new JLabel("Delete Any Medicine");
+        l2= new JLabel("Remove Any Pending Medicine");
         
         l1.setForeground(Color.GRAY);
         l2.setForeground(Color.YELLOW);
@@ -187,7 +192,7 @@ public class View_Prescription extends JFrame implements ActionListener {
         l1.setFont(f1);
         l2.setFont(f1);
         
-        bt= new JButton("Delete Medicine");  // set buttons
+        bt= new JButton("Remove Medicine");  // set buttons
 //        bt1= new JButton("Edit Medicine");
         
         bt.addActionListener(this); // 
@@ -198,6 +203,8 @@ public class View_Prescription extends JFrame implements ActionListener {
         
         bt.setForeground(Color.red);
 //        bt1.setForeground(Color.yellow);
+//        setVisible(false);
+//        setVisible(true);
         
     }
         
@@ -211,20 +218,28 @@ public class View_Prescription extends JFrame implements ActionListener {
             else{
                 try{
                 ConnectionClass obj1 = new ConnectionClass();
-                String q = "delete from prescription_hd where id_hd='"+pre_id+"' and status='P'";
-                String q1 = "delete from prescription_dd where pre_hd='"+pre_id+"'";
+                String q = "delete from prescription_hd where id_hd='"+pre_id+"'";
+                
+                String q1 = "Delete dd from prescription_dd dd "
+                        + "join prescription_hd hd on dd.pre_hd = hd.id_hd "
+                        + "where dd.pre_hd='"+pre_id+"' and hd.status='P'";
+                
                 try{
-                    obj1.stm.executeUpdate(q);
+                    System.out.println(q1);
                     obj1.stm.executeUpdate(q1);
+                    System.out.println(q);
+                    obj1.stm.executeUpdate(q);
+                    JOptionPane.showMessageDialog(null,"Medicine Is Deleted from prescription");
+                    updateTable();
                 }catch(Exception a){
                      JOptionPane.showMessageDialog(null,"This Medicine is issued you cannnot delete this");
                 }
                 
-                JOptionPane.showMessageDialog(null,"Medicine Is Deleted from prescription");
+                
 //                setVisible(false);
 //                t= new JTable(y,x);
 //                setVisible(true);
-                updateTable();
+                
 
  
                 }

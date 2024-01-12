@@ -117,12 +117,13 @@ public class ViewDoctor extends JFrame implements ActionListener  {
         String username = tf1.getText();
         if(ae.getSource()==bt){
             try{
-//                ConnectionClass obj1 = new ConnectionClass();
-//                String q = "delete from doctor where username='"+username +"'";
-//                obj1.stm.executeQuery(q);
-//                String q1 = "update appointment set appointment_status = 'Cancel' where doctor_username='"+username+"'";
-//                obj1.stm.executeQuery(q1);
-                JOptionPane.showMessageDialog(null,"This Button is not Available");
+                ConnectionClass obj1 = new ConnectionClass();
+                String q = "update doctor set avalibility='Not' where username='"+username +"'";
+                obj1.stm.executeQuery(q);
+                String q1 = "update appointment set appointment_status = 'Cancel' where doctor_username='"+username+"' and "
+                        + "status = 'Pending'";
+                obj1.stm.executeQuery(q1);
+                JOptionPane.showMessageDialog(null,"Dr. "+username+" has been inactive");
                 setVisible(false);
             }
             catch(Exception e){

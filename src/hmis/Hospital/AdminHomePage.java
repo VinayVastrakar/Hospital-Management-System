@@ -57,6 +57,10 @@ public class AdminHomePage extends JFrame implements ActionListener {
         men4.add(ment7);
         men4.add(ment8);
         
+        JMenu men7 = new JMenu("Billings");
+        JMenuItem ment12 = new JMenuItem("View All Billings");
+        men7.add(ment12);
+        
         JMenu men5 = new JMenu("Hii, Admin("+adminName+")");
         JMenuItem ment9 = new JMenuItem("My Profile");
         JMenuItem ment10 = new JMenuItem("Change Password");
@@ -71,6 +75,7 @@ public class AdminHomePage extends JFrame implements ActionListener {
         m1.add(men2);
         m1.add(men3);
         m1.add(men4);
+        m1.add(men7);
         m1.add(men5);
         m1.add(men6);
         
@@ -80,6 +85,7 @@ public class AdminHomePage extends JFrame implements ActionListener {
         men4.setFont(f1);
         men5.setFont(f1);
         men6.setFont(f1);
+        men7.setFont(f1);
         
         ment1.setFont(f);
         ment2.setFont(f);
@@ -92,6 +98,7 @@ public class AdminHomePage extends JFrame implements ActionListener {
         ment9.setFont(f);
         ment10.setFont(f);
         ment11.setFont(f);
+        ment12.setFont(f);
         
         m1.setBackground(Color.LIGHT_GRAY);
         
@@ -101,6 +108,7 @@ public class AdminHomePage extends JFrame implements ActionListener {
         men4.setForeground(Color.BLACK);
         men5.setForeground(Color.BLACK);
         men6.setForeground(Color.RED);
+        men7.setForeground(Color.BLACK);
         
         ment1.setBackground(Color.GREEN);
         ment3.setBackground(Color.GREEN);
@@ -108,6 +116,7 @@ public class AdminHomePage extends JFrame implements ActionListener {
         ment7.setBackground(Color.GREEN);
         ment9.setBackground(Color.GREEN);
         ment11.setBackground(Color.RED);
+        ment12.setBackground(Color.GREEN);
         
         ment2.setBackground(Color.BLUE);
         ment4.setBackground(Color.BLUE);
@@ -126,11 +135,10 @@ public class AdminHomePage extends JFrame implements ActionListener {
         ment9.addActionListener(this);
         ment10.addActionListener(this);
         ment11.addActionListener(this);
+        ment12.addActionListener(this);
         
         setJMenuBar(m1);
         add(l1);
-        
-        
         
         
     }
@@ -163,6 +171,9 @@ public class AdminHomePage extends JFrame implements ActionListener {
          else if(comnd.equals("View Appiontment")){
              new View_Appointment(username,login_id).setVisible(true);
          }
+         else if(comnd.equals("View All Billings")){
+             new Main_Billings(login_id,username).setVisible(true);
+         }
          else if(comnd.equals("My Profile")){
              new CheckMyProfile(admin_id,login_id);
          }
@@ -174,5 +185,9 @@ public class AdminHomePage extends JFrame implements ActionListener {
              new Index();
          }
      }
+     
+     public static void main(String[] args) {
+        new AdminHomePage("Vinay Vastrakar","12",2,"Vinay").setVisible(true);
+    }
   
 }

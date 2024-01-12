@@ -10,7 +10,7 @@ import java.sql.*;
 public class View_Appointment extends JFrame implements ActionListener{
     
     String []x={"Appointment_Id","Patient","Doctor","Date","Time","Status"};
-    JButton bt,bt1,bt2,bt3;
+    JButton bt,bt1,bt2,bt3,bt4,bt5;
     String y[][]=new String[20][6];
     int i=0,j=0;
     JTable t;
@@ -41,6 +41,9 @@ public class View_Appointment extends JFrame implements ActionListener{
             }
             else if(login_id==3){
                 q = "Select * from Appointment where patient_id='"+username+"'";
+            }
+            else if(login_id==5){
+                q = "Select * from Appointment where status='Complete'";
             }
             else{
                 q = "Select * from Appointment";
@@ -169,28 +172,60 @@ public class View_Appointment extends JFrame implements ActionListener{
             add(p3,"South");
         }
         
+        if(login_id ==5){
+            f1= new Font("Lucida Fax", Font.BOLD,25);
+            l1= new JLabel("Appointment ID");
+            l2= new JLabel("Make And View Billings");
+
+            l1.setForeground(Color.GRAY);
+            l2.setForeground(Color.YELLOW);
+            l2.setHorizontalAlignment(JLabel.CENTER);
+
+            l1.setFont(f1);
+            l2.setFont(f1);
+
+            bt4= new JButton("Make Billing");  // set buttons
+            bt5= new JButton("View Billings");
+
+            bt4.addActionListener(this); // 
+            bt5.addActionListener(this);
+
+            bt4.setBackground(Color.black);
+            bt5.setBackground(Color.black);
+
+            bt4.setForeground(Color.green);
+            bt5.setForeground(Color.yellow);
+
+            tf1 = new JTextField();
+            tf1.setFont(f);
+        
+        
+            p1 = new JPanel();
+            p1.setLayout(new GridLayout(1,1,10,10));
+            p1.add(l2);
+
+            p2 = new JPanel();
+            p2.setLayout(new GridLayout(1,4,10,10));
+            p2.add(l1);
+            p2.add(tf1);
+            p2.add(bt4);
+            p2.add(bt5);
+
+            p3 = new JPanel();
+            p3.setLayout(new GridLayout(2,1,10,10));
+            p3.add(p1);
+            p3.add(p2);
+
+            p1.setBackground(Color.black);
+            p2.setBackground(Color.black);
+            p3.setBackground(Color.black);
+
+            add(p3,"South");
+        }
+        
         add(sp);
         
         
-//        try{
-//             ConnectionClass obj2 = new ConnectionClass();
-//             appo_id=tf1.getText();
-//             String q = "select * from appointment where app_id='"+tf1.getText()+"'";
-//             ResultSet rest = obj2.stm.executeQuery(q);
-//             if(rest.next()){
-//                 JOptionPane.showMessageDialog(null, "Appointment status is Cancelled ");
-//                 setVisible(false);
-//                 pet_id = rest.getString("patient_id");
-//                 doc_id = rest.getString("doctor_id");
-//                 
-//             }else{
-//                 JOptionPane.showMessageDialog(null, "Appointment ID not found");
-//             }
-//             
-//         }
-//         catch(Exception e){
-//             e.printStackTrace();
-//         }
         
     }
     
@@ -266,6 +301,18 @@ public class View_Appointment extends JFrame implements ActionListener{
                 new View_Prescription(login_id,app_id).setVisible(true);
             }
         }
+        if(ae.getSource()==bt4){
+            if(app_id.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill Appointment ID !");
+            }
+            else if(login_id==5){
+                new Make_Billing(app_id,username).setVisible(true);
+            }
+        }
+    }
+    
+    public static void main(String[] args) {
+        new View_Appointment("Sippu",5).setVisible(true);
     }
     
 }

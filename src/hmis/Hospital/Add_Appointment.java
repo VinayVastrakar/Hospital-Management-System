@@ -296,14 +296,14 @@ public class Add_Appointment extends JFrame implements ActionListener{
             String formattedDate = dateFormat.format(date);
             
             String time = ch2.getSelectedItem();
-            String status = "Open";
-            Random r = new Random();
-            String app_id = ""+Math.abs(r.nextInt()%100000);
+            String status = "Pending";
+//            Random r = new Random();
+//            String app_id = ""+Math.abs(r.nextInt()%100000);
             
             try{
                 ConnectionClass obj3 = new ConnectionClass();
-                String q3= "insert into appointment(app_id,date,time, status,"
-                        + "patient_id,doctor_id) values('"+app_id+"','"+formattedDate+"','"+
+                String q3= "insert into appointment(date,time, status,"
+                        + "patient_id,doctor_id) values('"+formattedDate+"','"+
                         time+"','"+status+"','"+patient+"','"+doctor+"')";
                 int aa = obj3.stm.executeUpdate(q3);
                 

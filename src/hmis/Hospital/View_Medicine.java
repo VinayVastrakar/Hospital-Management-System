@@ -18,6 +18,7 @@ public class View_Medicine extends JFrame implements ActionListener {
     Font f,f1;
     String q;
     
+    
     View_Medicine()
     {
         super("Medicine Information");
@@ -130,7 +131,7 @@ public class View_Medicine extends JFrame implements ActionListener {
              }
              else{
                  setVisible(false);
-                 new Edit_Medicine(med_id).setVisible(true);
+                 new Edit_Medicine(Integer.parseInt(med_id)).setVisible(true);
              }
         }
     }

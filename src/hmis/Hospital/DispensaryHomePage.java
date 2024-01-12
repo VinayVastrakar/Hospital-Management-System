@@ -42,7 +42,7 @@ public class DispensaryHomePage extends JFrame implements ActionListener {
         
         JMenu men3 = new JMenu("Billing");
 
-        JMenuItem ment6 = new JMenuItem("Make Billing");
+        JMenuItem ment6 = new JMenuItem("View Appointment");
         JMenuItem ment7 = new JMenuItem("View Billing");
 
         men3.add(ment6);
@@ -129,8 +129,8 @@ public class DispensaryHomePage extends JFrame implements ActionListener {
          else if(comnd.equals("View Medicine")){
              new View_Medicine().setVisible(true);
          }
-         else if(comnd.equals("Make Billing")){
-             new Make_Billing().setVisible(true);  
+         else if(comnd.equals("View Appointment")){
+             new View_Appointment(username,login_id).setVisible(true);
          }
          else if(comnd.equals("View Billing")){
              new View_Billing(username,login_id).setVisible(true);
@@ -138,9 +138,11 @@ public class DispensaryHomePage extends JFrame implements ActionListener {
          else if(comnd.equals("View Priscription")){
              new View_Priscription(username,login_id).setVisible(true);
          }
-//         else if(comnd.equals("My Profile")){
-//             new CheckMyProfile(dec_id,login_id);
-//         }
+         else if(comnd.equals("My Profile")){
+             JOptionPane.showMessageDialog(null, "This is a temperary button");
+             JOptionPane.showMessageDialog(null, "Patient Details Successfull Inserted");
+             new CheckMyProfile(dec_id,login_id);
+         }
          else if(comnd.equals("Change Password")){
              new ChangeMyPassword(dec_id,login_id);
          }

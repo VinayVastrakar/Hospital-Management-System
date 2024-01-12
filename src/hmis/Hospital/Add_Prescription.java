@@ -103,19 +103,53 @@ public class Add_Prescription extends JFrame implements ActionListener{
         l1.add(l5);
         
         t2 = new JTextField();
-        t2.setBounds(510, 50, 100, 20);
+        t2.setBounds(500, 50, 100, 20);
         l1.add(t2);
+        
+        l5= new JLabel("Avl. Qty");
+        l5.setBounds(630, 0, 100, 50);
+        l5.setFont(new Font("Arial" , Font.BOLD,18));
+        l5.setForeground(Color.BLACK);
+        l1.add(l5);
+        
+        l6 = new JLabel();
+        l6.setBounds(640, 50, 50, 20);
+        l6.setFont(new Font("Arial" , Font.CENTER_BASELINE,20));
+        
+        c1.addMouseListener(new MouseAdapter()
+        {
+        
+            @Override
+            public void mouseClicked(MouseEvent arg0){
+                
+                try{
+                    ConnectionClass obj1 = new ConnectionClass();
+                    String name = c1.getSelectedItem();
+                    String q1= "select quantity from medicine where name='"+name+"'";
+                    ResultSet rest1 = obj1.stm.executeQuery(q1);
+                    while(rest1.next()){
+                        l6.setText(rest1.getString("quantity"));
+                    }
+                }
+                catch(Exception e){
+                 e.printStackTrace();
+                }
+            }
+        });
+        
+        
+        l1.add(l6);
         
         bt1 = new JButton("Add"); // buttom 1
         bt1.setBackground(Color.blue);
         bt1.setForeground(Color.white);
-        bt1.setBounds(650,30,120,30);
+        bt1.setBounds(750,30,90,30);
         l1.add(bt1);
         
         bt2 = new JButton("Cancle"); // button 2
         bt2.setBackground(Color.RED);
         bt2.setForeground(Color.white);
-        bt2.setBounds(820,30,120,30);
+        bt2.setBounds(870,30,90,30);
         l1.add(bt2);
         
         bt1.addActionListener(this); // add action
@@ -133,14 +167,16 @@ public class Add_Prescription extends JFrame implements ActionListener{
         
         if(ae.getSource()==bt1){
              String med_name = c1.getSelectedItem();
+             int avl_qty=0;
              try{
                  ConnectionClass obj = new ConnectionClass();
-                 String q = "select med_id from medicine where name='"+med_name+"'";
+                 String q = "select med_id,quantity from medicine where name='"+med_name+"'";
                  ResultSet rest = obj.stm.executeQuery(q);
               
                    if(rest.next())
                    {
                        med_id = rest.getString("med_id");
+                       avl_qty = Integer.parseInt(rest.getString("quantity"));
                    }
 
              }
@@ -149,17 +185,22 @@ public class Add_Prescription extends JFrame implements ActionListener{
              }
              String advice = c2.getSelectedItem();
              String freq = c3.getSelectedItem();
-             String day = t2.getText();
+             String qty = t2.getText();
+             if(avl_qty < Integer.parseInt(qty)){
+                 JOptionPane.showMessageDialog(null, "Insufficient Medicine");
+                 f.setVisible(false);
+             }
 //             String date = new Date().toString();
-             Random r= new Random();
-             String pre_hd = ""+Math.abs(r.nextInt()%10000);
-             String pre_dd = ""+Math.abs(r.nextInt()%10000);
+//             Random r= new Random();
+//             String pre_hd = ""+Math.abs(r.nextInt()%10000);
+//             String pre_dd = ""+Math.abs(r.nextInt()%10000);
+             avl_qty-=Integer.parseInt(qty);
              
              try{
                 ConnectionClass obj = new ConnectionClass();
                 String q2 = "Select * from appointment where app_id='"+app_id+"'";
                 ResultSet rest = obj.stm.executeQuery(q2);
-                while(rest.next())
+                if(rest.next())
                 {
                     pat_name = rest.getString("patient_id");
                     doc_name = rest.getString("doctor_id");
@@ -167,16 +208,28 @@ public class Add_Prescription extends JFrame implements ActionListener{
                     date = rest.getString("date");
                 }
                 
-                String q = "insert into prescription_hd(id_hd,date,time,status,appointment_id,patient,doctor) "
-                         + "values('"+pre_hd+"','"+date+"','"+time+"','"+"P"+"','"+app_id+"','"
+                String q = "insert into prescription_hd(date,time,status,appointment_id,patient,doctor) "
+                         + "values('"+date+"','"+time+"','"+"P"+"','"+app_id+"','"
                          +pat_name+"','"+doc_name+"')";
+                obj.stm.executeUpdate(q);
                 
+                String q4 ="SELECT id_hd FROM hmisdb.prescription_hd order by id_hd desc limit 1";
+                
+                ResultSet rest3 = obj.stm.executeQuery(q4);
+                int pre_hd =1;
+                if(rest3.next()){
+                    pre_hd = rest3.getInt("id_hd");
+                }
                 
                  
-                 String q1 = "insert into prescription_dd(pre_dd_id,med_id,advice,frequency,quantity,pre_hd) values('"+pre_dd+"','"+med_id+"','"+advice+"','"
-                         +freq+"','"+day+"','"+pre_hd+"')";
-                 obj.stm.executeUpdate(q);
+                 String q1 = "insert into prescription_dd(med_id,advice,frequency,quantity,pre_hd) values('"+med_id+"','"+advice+"','"
+                         +freq+"','"+qty+"','"+pre_hd+"')";
+                 String q3 = "update hmisdb.medicine set quantity='"+avl_qty+"' where med_id='"+med_id+"'";
+                 
+                 obj.stm.executeUpdate(q3);
+                 
                  obj.stm.executeUpdate(q1);
+                 
                  JOptionPane.showMessageDialog(null, "Prescription Added");
                  
                  new View_Prescription(1,app_id).setVisible(true);
@@ -193,6 +246,6 @@ public class Add_Prescription extends JFrame implements ActionListener{
          }
     }
     public static void main(String[] args) {
-        new Add_Prescription("2662").setVisible(true);
+        new Add_Prescription("2").setVisible(true);
     }
 }

@@ -12,10 +12,10 @@ public class Edit_Medicine extends JFrame implements ActionListener{
     JLabel l1,l2,l3,l4,l5,l6,l7,l8;
     JTextField t1,t2,t3,t4,t5,t6;
     JButton bt1,bt2;
-    String med_id;
+    int med_id;
     
     
-    Edit_Medicine(String med_id){
+    Edit_Medicine(int med_id){
         this.med_id = med_id;
         try{
             ConnectionClass obj = new ConnectionClass();
@@ -193,6 +193,6 @@ public class Edit_Medicine extends JFrame implements ActionListener{
     }
             
     public static void main(String[] args) {
-        new Edit_Medicine("89258").setVisible(true);
+        new Edit_Medicine(1).setVisible(true);
     }
 }
